@@ -29,9 +29,6 @@ option(
     ${PROJECT_IS_TOP_LEVEL}
 )
 
-# for find of beman-install-library
-include(infra/cmake/beman-install-library-config.cmake)
-
 add_library(mb.cpp-lib-template INTERFACE)
 add_library(mb::cpp-lib-template ALIAS mb.cpp-lib-template)
 
@@ -44,7 +41,7 @@ set_target_properties(mb.cpp-lib-template PROPERTIES VERIFY_INTERFACE_HEADER_SET
 
 add_subdirectory(include/mb/cpp-lib-template)
 
-beman_install_library(mb.cpp-lib-template)
+#todo install, can't use beman_install_library as it has beman namespace hardcoded
 
 if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
     enable_testing()
