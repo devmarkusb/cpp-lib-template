@@ -1,0 +1,10 @@
+/compile_commands.json
+/build
+
+# ignore vscode settings
+.vscode
+
+# ignore jetbrains settings
+.idea
+
+CMakeUserPresets.json
