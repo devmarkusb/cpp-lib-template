@@ -72,6 +72,28 @@
       }
     },
     {
+      "name": "llvm-libc++-debug",
+      "displayName": "Clang-libc++ Debug Build",
+      "inherits": [
+        "_root-config",
+        "_debug-base"
+      ],
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/llvm-libc++-toolchain.cmake"
+      }
+    },
+    {
+      "name": "llvm-libc++-release",
+      "displayName": "Clang-libc++ Release Build",
+      "inherits": [
+        "_root-config",
+        "_release-base"
+      ],
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/llvm-libc++-toolchain.cmake"
+      }
+    },
+    {
       "name": "appleclang-debug",
       "displayName": "Appleclang Debug Build",
       "inherits": [
@@ -151,6 +173,20 @@
       ]
     },
     {
+      "name": "llvm-libc++-debug",
+      "configurePreset": "llvm-libc++-debug",
+      "inherits": [
+        "_root-build"
+      ]
+    },
+    {
+      "name": "llvm-libc++-release",
+      "configurePreset": "llvm-libc++-release",
+      "inherits": [
+        "_root-build"
+      ]
+    },
+    {
       "name": "appleclang-debug",
       "configurePreset": "appleclang-debug",
       "inherits": [
@@ -210,6 +246,16 @@
       "name": "llvm-release",
       "inherits": "_test_base",
       "configurePreset": "llvm-release"
+    },
+    {
+      "name": "llvm-libc++-debug",
+      "inherits": "_test_base",
+      "configurePreset": "llvm-libc++-debug"
+    },
+    {
+      "name": "llvm-libc++-release",
+      "inherits": "_test_base",
+      "configurePreset": "llvm-libc++-release"
     },
     {
       "name": "appleclang-debug",
@@ -298,6 +344,40 @@
         {
           "type": "test",
           "name": "llvm-release"
+        }
+      ]
+    },
+    {
+      "name": "llvm-libc++-debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "llvm-libc++-debug"
+        },
+        {
+          "type": "build",
+          "name": "llvm-libc++-debug"
+        },
+        {
+          "type": "test",
+          "name": "llvm-libc++-debug"
+        }
+      ]
+    },
+    {
+      "name": "llvm-libc++-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "llvm-libc++-release"
+        },
+        {
+          "type": "build",
+          "name": "llvm-libc++-release"
+        },
+        {
+          "type": "test",
+          "name": "llvm-libc++-release"
         }
       ]
     },
