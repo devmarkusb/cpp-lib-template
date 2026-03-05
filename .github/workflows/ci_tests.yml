@@ -26,6 +26,10 @@ jobs:
           {"preset": "msvc-release", "runner": "windows-latest"}
         ]
 
+  # as the next step has a hardcoded install test to targetting that dir
+  workaround-create-install-dir:
+    run: mkdir -p /opt/beman.package
+
   build-and-test:
     uses: bemanproject/infra-workflows/.github/workflows/reusable-beman-build-and-test.yml@1.3.0
     with:
