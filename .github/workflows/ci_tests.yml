@@ -1,4 +1,4 @@
-name: Continuous Integration Tests
+name: continuous integration tests
 
 on:
   push:
@@ -8,18 +8,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  beman-submodule-check:
-    uses: bemanproject/infra-workflows/.github/workflows/reusable-beman-submodule-check.yml@1.3.0
-
   preset-test:
-    uses: bemanproject/infra-workflows/.github/workflows/reusable-beman-preset-test.yml@1.3.0
+    uses: devmarkusb/gh-workflows/.github/workflows/preset-test.yml@main
     with:
       matrix_config: >
         [
           {"preset": "gcc-debug", "image": "ghcr.io/bemanproject/infra-containers-gcc:latest"},
           {"preset": "gcc-release", "image": "ghcr.io/bemanproject/infra-containers-gcc:latest"},
-          {"preset": "llvm-debug", "image": "ghcr.io/bemanproject/infra-containers-clang:latest"},
-          {"preset": "llvm-release", "image": "ghcr.io/bemanproject/infra-containers-clang:latest"},
+          {"preset": "clang-debug", "image": "ghcr.io/bemanproject/infra-containers-clang:latest"},
+          {"preset": "clang-release", "image": "ghcr.io/bemanproject/infra-containers-clang:latest"},
           {"preset": "appleclang-debug", "runner": "macos-latest"},
           {"preset": "appleclang-release", "runner": "macos-latest"},
           {"preset": "msvc-debug", "runner": "windows-latest"},
@@ -27,7 +24,7 @@ jobs:
         ]
 
   build-and-test:
-    uses: bemanproject/infra-workflows/.github/workflows/reusable-beman-build-and-test.yml@1.3.0
+    uses: devmarkusb/gh-workflows/.github/workflows/build-and-test.yml@main
     with:
       matrix_config: >
         {
@@ -38,8 +35,8 @@ jobs:
                   "tests": [
                     { "stdlibs": ["libstdc++"],
                       "tests": [
-                        "Debug.Default", "Release.Default", "Release.TSan",
-                        "Release.MaxSan", "Debug.Werror",
+                        "Debug.Default", "Release.Default", "Release.TSan", "Release.MSan",
+                        "Release.MaxSan", "Debug.MaxError", "Release.MaxError",
                         "Debug.Coverage"
                       ]
                     }
@@ -62,15 +59,11 @@ jobs:
                   "tests": [
                     { "stdlibs": ["libstdc++", "libc++"],
                       "tests": [
-                        "Debug.Default", "Release.Default", "Release.TSan",
-                        "Release.MaxSan", "Debug.Werror"
+                        "Debug.Default", "Release.Default", "Release.TSan", "Release.MSan",
+                        "Release.MaxSan", "Debug.MaxError", "Release.MaxError",
+                        "Debug.Coverage"
                       ]
                     }
-                  ]
-                },
-                { "cxxversions": ["c++23"],
-                  "tests": [
-                    {"stdlibs": ["libstdc++", "libc++"], "tests": ["Release.Default"]}
                   ]
                 }
               ]
@@ -79,9 +72,6 @@ jobs:
               "tests": [
                 { "cxxversions": ["c++26", "c++23"],
                   "tests": [{"stdlibs": ["libc++"], "tests": ["Release.Default"]}]
-                },
-                { "cxxversions": ["c++20", "c++17"],
-                  "tests": [{"stdlibs": ["libstdc++"], "tests": ["Release.Default"]}]
                 }
               ]
             }
@@ -90,7 +80,7 @@ jobs:
             { "versions": ["latest"],
               "tests": [
                 { "cxxversions": ["c++26"],
-                  "tests": [{ "stdlibs": ["libc++"], "tests": ["Release.Default"]}]
+                  "tests": [{ "stdlibs": ["libc++"], "tests": ["Debug.Default"]}]
                 }
               ]
             }
@@ -101,7 +91,7 @@ jobs:
                 { "cxxversions": ["c++23"],
                   "tests": [
                     { "stdlibs": ["stl"],
-                      "tests": ["Debug.Default", "Release.Default", "Release.MaxSan"]
+                      "tests": ["Debug.Default", "Release.MaxSan", "Debug.MaxError"]
                     }
                   ]
                 }
@@ -109,3 +99,11 @@ jobs:
             }
           ]
         }
+
+  install-test:
+    uses: devmarkusb/gh-workflows/.github/workflows/install-test.yml@main
+    with:
+      image: ghcr.io/bemanproject/infra-containers-gcc:latest
+      cxx_standard: 26
+      namespace: mb
+      main_header: cpp-lib-template.hpp

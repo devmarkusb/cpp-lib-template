@@ -41,7 +41,8 @@ set_target_properties(mb.cpp-lib-template PROPERTIES VERIFY_INTERFACE_HEADER_SET
 
 add_subdirectory(include/mb/cpp-lib-template)
 
-#todo install, can't use beman_install_library as it has beman namespace hardcoded
+include(devenv/cmake/install-library-config.cmake)
+mb_install_library(mb.cpp-lib-template)
 
 if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
     enable_testing()

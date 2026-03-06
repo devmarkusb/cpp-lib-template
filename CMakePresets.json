@@ -50,7 +50,7 @@
       }
     },
     {
-      "name": "llvm-debug",
+      "name": "clang-debug",
       "displayName": "Clang Debug Build",
       "inherits": [
         "_root-config",
@@ -61,7 +61,7 @@
       }
     },
     {
-      "name": "llvm-release",
+      "name": "clang-release",
       "displayName": "Clang Release Build",
       "inherits": [
         "_root-config",
@@ -159,15 +159,15 @@
       ]
     },
     {
-      "name": "llvm-debug",
-      "configurePreset": "llvm-debug",
+      "name": "clang-debug",
+      "configurePreset": "clang-debug",
       "inherits": [
         "_root-build"
       ]
     },
     {
-      "name": "llvm-release",
-      "configurePreset": "llvm-release",
+      "name": "clang-release",
+      "configurePreset": "clang-release",
       "inherits": [
         "_root-build"
       ]
@@ -238,14 +238,14 @@
       "configurePreset": "gcc-release"
     },
     {
-      "name": "llvm-debug",
+      "name": "clang-debug",
       "inherits": "_test_base",
-      "configurePreset": "llvm-debug"
+      "configurePreset": "clang-debug"
     },
     {
-      "name": "llvm-release",
+      "name": "clang-release",
       "inherits": "_test_base",
-      "configurePreset": "llvm-release"
+      "configurePreset": "clang-release"
     },
     {
       "name": "llvm-libc++-debug",
@@ -314,36 +314,36 @@
       ]
     },
     {
-      "name": "llvm-debug",
+      "name": "clang-debug",
       "steps": [
         {
           "type": "configure",
-          "name": "llvm-debug"
+          "name": "clang-debug"
         },
         {
           "type": "build",
-          "name": "llvm-debug"
+          "name": "clang-debug"
         },
         {
           "type": "test",
-          "name": "llvm-debug"
+          "name": "clang-debug"
         }
       ]
     },
     {
-      "name": "llvm-release",
+      "name": "clang-release",
       "steps": [
         {
           "type": "configure",
-          "name": "llvm-release"
+          "name": "clang-release"
         },
         {
           "type": "build",
-          "name": "llvm-release"
+          "name": "clang-release"
         },
         {
           "type": "test",
-          "name": "llvm-release"
+          "name": "clang-release"
         }
       ]
     },
