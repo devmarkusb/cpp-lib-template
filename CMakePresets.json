@@ -9,7 +9,7 @@
       "cacheVariables": {
         "CMAKE_CXX_STANDARD": "23",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-        "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "./infra/cmake/use-fetch-content.cmake"
+        "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "./dev/cmake/use-fetch-content.cmake"
       }
     },
     {
@@ -35,7 +35,7 @@
         "_debug-base"
       ],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/gnu-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/gcc-toolchain.cmake"
       }
     },
     {
@@ -46,7 +46,7 @@
         "_release-base"
       ],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/gnu-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/gcc-toolchain.cmake"
       }
     },
     {
@@ -57,7 +57,7 @@
         "_debug-base"
       ],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/llvm-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/clang-toolchain.cmake"
       }
     },
     {
@@ -68,29 +68,29 @@
         "_release-base"
       ],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/llvm-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/clang-toolchain.cmake"
       }
     },
     {
-      "name": "llvm-libc++-debug",
+      "name": "clang-libc++-debug",
       "displayName": "Clang-libc++ Debug Build",
       "inherits": [
         "_root-config",
         "_debug-base"
       ],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/llvm-libc++-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/clang-libc++-toolchain.cmake"
       }
     },
     {
-      "name": "llvm-libc++-release",
+      "name": "clang-libc++-release",
       "displayName": "Clang-libc++ Release Build",
       "inherits": [
         "_root-config",
         "_release-base"
       ],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/llvm-libc++-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/clang-libc++-toolchain.cmake"
       }
     },
     {
@@ -101,7 +101,7 @@
         "_debug-base"
       ],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/appleclang-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/appleclang-toolchain.cmake"
       }
     },
     {
@@ -112,7 +112,7 @@
         "_release-base"
       ],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/appleclang-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/appleclang-toolchain.cmake"
       }
     },
     {
@@ -123,7 +123,7 @@
         "_debug-base"
       ],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/msvc-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/msvc-toolchain.cmake"
       }
     },
     {
@@ -134,7 +134,7 @@
         "_release-base"
       ],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "infra/cmake/msvc-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/msvc-toolchain.cmake"
       }
     }
   ],
@@ -173,15 +173,15 @@
       ]
     },
     {
-      "name": "llvm-libc++-debug",
-      "configurePreset": "llvm-libc++-debug",
+      "name": "clang-libc++-debug",
+      "configurePreset": "clang-libc++-debug",
       "inherits": [
         "_root-build"
       ]
     },
     {
-      "name": "llvm-libc++-release",
-      "configurePreset": "llvm-libc++-release",
+      "name": "clang-libc++-release",
+      "configurePreset": "clang-libc++-release",
       "inherits": [
         "_root-build"
       ]
@@ -248,14 +248,14 @@
       "configurePreset": "clang-release"
     },
     {
-      "name": "llvm-libc++-debug",
+      "name": "clang-libc++-debug",
       "inherits": "_test_base",
-      "configurePreset": "llvm-libc++-debug"
+      "configurePreset": "clang-libc++-debug"
     },
     {
-      "name": "llvm-libc++-release",
+      "name": "clang-libc++-release",
       "inherits": "_test_base",
-      "configurePreset": "llvm-libc++-release"
+      "configurePreset": "clang-libc++-release"
     },
     {
       "name": "appleclang-debug",
@@ -348,36 +348,36 @@
       ]
     },
     {
-      "name": "llvm-libc++-debug",
+      "name": "clang-libc++-debug",
       "steps": [
         {
           "type": "configure",
-          "name": "llvm-libc++-debug"
+          "name": "clang-libc++-debug"
         },
         {
           "type": "build",
-          "name": "llvm-libc++-debug"
+          "name": "clang-libc++-debug"
         },
         {
           "type": "test",
-          "name": "llvm-libc++-debug"
+          "name": "clang-libc++-debug"
         }
       ]
     },
     {
-      "name": "llvm-libc++-release",
+      "name": "clang-libc++-release",
       "steps": [
         {
           "type": "configure",
-          "name": "llvm-libc++-release"
+          "name": "clang-libc++-release"
         },
         {
           "type": "build",
-          "name": "llvm-libc++-release"
+          "name": "clang-libc++-release"
         },
         {
           "type": "test",
-          "name": "llvm-libc++-release"
+          "name": "clang-libc++-release"
         }
       ]
     },
