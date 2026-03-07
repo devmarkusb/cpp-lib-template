@@ -4,10 +4,9 @@
 #include <cstdint>
 
 namespace mb::cpp_lib_template {
-inline int32_t sum( int32_t a, int32_t b ) {
-  return
-  a + b  ;
+inline int32_t sum(int32_t a, int32_t b) {
+    return a + b;
 }
-}
+} // namespace mb::cpp_lib_template
 
 #endif

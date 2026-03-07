@@ -14,4 +14,4 @@ TEST(SumTest, neg) {
 TEST(SumTest, zero) {
     EXPECT_EQ(sum(0, 5), 5);
 }
-}
+} // namespace mb::cpp_lib_template
