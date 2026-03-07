@@ -29,6 +29,8 @@ option(
     ${PROJECT_IS_TOP_LEVEL}
 )
 
+include(devenv/cmake/install-library-config.cmake)
+
 add_library(mb.cpp-lib-template INTERFACE)
 add_library(mb::cpp-lib-template ALIAS mb.cpp-lib-template)
 
@@ -44,7 +46,6 @@ set_target_properties(
 
 add_subdirectory(include/mb/cpp-lib-template)
 
-include(devenv/cmake/install-library-config.cmake)
 mb_install_library(mb.cpp-lib-template)
 
 if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
