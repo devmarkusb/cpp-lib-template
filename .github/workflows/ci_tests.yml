@@ -60,8 +60,7 @@ jobs:
                     { "stdlibs": ["libstdc++", "libc++"],
                       "tests": [
                         "Debug.Default", "Release.Default", "Release.TSan", "Release.MSan",
-                        "Release.MaxSan", "Debug.MaxError", "Release.MaxError",
-                        "Debug.Coverage"
+                        "Release.MaxSan", "Debug.MaxError", "Release.MaxError"
                       ]
                     }
                   ]
