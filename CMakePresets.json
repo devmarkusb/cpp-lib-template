@@ -29,37 +29,27 @@
     {
       "name": "gcc",
       "hidden": true,
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/gcc-toolchain.cmake"
-      }
+      "toolchainFile": "devenv/cmake/toolchains/gcc-toolchain.cmake"
     },
     {
       "name": "clang",
       "hidden": true,
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/clang-toolchain.cmake"
-      }
+      "toolchainFile": "devenv/cmake/toolchains/clang-toolchain.cmake"
     },
     {
       "name": "clang-libc++",
       "hidden": true,
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/clang-libc++-toolchain.cmake"
-      }
+      "toolchainFile": "devenv/cmake/toolchains/clang-libc++-toolchain.cmake"
     },
     {
       "name": "appleclang",
       "hidden": true,
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/appleclang-toolchain.cmake"
-      }
+      "toolchainFile": "devenv/cmake/toolchains/appleclang-toolchain.cmake"
     },
     {
       "name": "msvc",
       "hidden": true,
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "devenv/cmake/toolchains/msvc-toolchain.cmake"
-      }
+      "toolchainFile": "devenv/cmake/toolchains/msvc-toolchain.cmake"
     },
     {
       "name": "MaxSan",
