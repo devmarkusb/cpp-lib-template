@@ -9,5 +9,5 @@ jobs:
   auto-update-pre-commit:
     uses: devmarkusb/gh-workflows/.github/workflows/update-pre-commit.yml@main
     secrets:
-      APP_ID: ${{ secrets.AUTO_PR_BOT_APP_ID }}
-      PRIVATE_KEY: ${{ secrets.AUTO_PR_BOT_PRIVATE_KEY }}
+      APP_ID: ${{ secrets.MB_PRE_COMMIT_AUTO_UPDATER_APP_ID }}
+      PRIVATE_KEY: ${{ secrets.MB_PRE_COMMIT_AUTO_UPDATER_PRIVATE_KEY }}
