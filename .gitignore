@@ -10,7 +10,7 @@ build/
 /compile_commands.json
 
 # python
-venv
+.venv
 
 # misc
 CMakeUserPresets.json

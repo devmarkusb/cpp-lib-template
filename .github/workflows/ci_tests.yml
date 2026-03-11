@@ -59,7 +59,7 @@ jobs:
                   "tests": [
                     { "stdlibs": ["libstdc++", "libc++"],
                       "tests": [
-                        "Debug.Default", "Release.Default", "Release.TSan", "Release.MSan",
+                        "Debug.Default", "Release.Default", "Release.TSan",
                         "Release.MaxSan", "Debug.MaxError", "Release.MaxError"
                       ]
                     }

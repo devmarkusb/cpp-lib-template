@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 3.30...4.3)
-
 # What you will rename, when starting a real project:
 # - MB_CPP_LIB_TEMPLATE
 # - cpp-lib-template
 # - mb.
 # - mb::
 # - mb/
+
+cmake_minimum_required(VERSION 3.30...4.3)
 
 project(
     mb.cpp-lib-template # CMake Project Name, which is also the name of the top-level
