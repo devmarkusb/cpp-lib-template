@@ -120,4 +120,6 @@ Development and CI support (often as a submodule):
 - **`fetchcontent-lockfile.json`** — Locked dependencies for the CMake dependency provider (e.g. Googletest at a fixed
   Git tag).
 - **`.pre-commit-config.yaml`** — Pre-commit hooks: trailing whitespace, EOF, JSON/YAML checks, clang-format, gersemi (
-  CMake), markdownlint, codespell (hooks apply to repo; `devenv/` is excluded).
+  CMake), markdownlint, codespell (hooks apply to repo; `devenv/` is excluded). To sync `.clang-format` from
+  [devmarkusb/clangformat](https://github.com/devmarkusb/clangformat) (including versioned configs), run
+  `cd devenv && ./sync-clang-format.sh [VERSION]` (run from inside `devenv`).
