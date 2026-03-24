@@ -46,12 +46,14 @@ Then `pre-commit` runs on commit; you can also run `pre-commit run -a` manually.
 ## Usage when starting a new library
 
 1. Create your new repo (e.g. on GitHub).
-2. Copy everything from this template.
-3. Rename namespace and library name everywhere. See the top comment in `CMakeLists.txt` for what to change:
+2. Copy everything except devenv, .git, and similar, from this template.
+3. Add https://github.com/devmarkusb/devenv as submodul, cf. README.md there.
+4. Rename namespace and library names everywhere. See the top comment in `CMakeLists.txt` for what to change:
     - `MB_CPP_LIB_TEMPLATE` (CMake option prefix)
     - `cpp-lib-template` (project and target names)
     - `mb.` / `mb::` / `mb/` (namespace and install layout)
-4. Go. When you find improvements that belong in the template, consider contributing them back here.
+    - files and dirs
+5. Go. When you find improvements that belong in the template, consider contributing them back here.
 
 ## CMake options
 
