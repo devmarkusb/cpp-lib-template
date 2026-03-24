@@ -50,7 +50,7 @@ mb_install_library(mb.cpp-lib-template)
 
 if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
     enable_testing()
-    add_subdirectory(src/cpp-lib-template)
+    add_subdirectory(src)
 endif()
 
 if(MB_CPP_LIB_TEMPLATE_BUILD_EXAMPLES)
