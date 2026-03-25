@@ -1,3 +1,9 @@
+target_sources(mb.cpp-lib-template PRIVATE cpp-lib-template.cpp)
+
+if(NOT MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
+    return()
+endif()
+
 find_package(GTest REQUIRED)
 
 add_executable(mb.cpp-lib-template.test)

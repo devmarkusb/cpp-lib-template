@@ -31,7 +31,7 @@ option(
 
 include(devenv/cmake/install-library-config.cmake)
 
-add_library(mb.cpp-lib-template INTERFACE)
+add_library(mb.cpp-lib-template STATIC)
 add_library(mb::cpp-lib-template ALIAS mb.cpp-lib-template)
 
 target_sources(
@@ -48,9 +48,10 @@ add_subdirectory(include/mb/cpp-lib-template)
 
 mb_install_library(mb.cpp-lib-template)
 
+add_subdirectory(src)
+
 if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
     enable_testing()
-    add_subdirectory(src)
 endif()
 
 if(MB_CPP_LIB_TEMPLATE_BUILD_EXAMPLES)

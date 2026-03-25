@@ -47,7 +47,7 @@ Then `pre-commit` runs on commit; you can also run `pre-commit run -a` manually.
 
 1. Create your new repo (e.g. on GitHub).
 2. Copy everything except devenv, .git, and similar, from this template.
-3. Add https://github.com/devmarkusb/devenv as submodul, cf. README.md there.
+3. Add <https://github.com/devmarkusb/devenv> as submodule, cf. README.md there.
 4. Rename namespace and library names everywhere. See the top comment in `CMakeLists.txt` for what to change:
     - `MB_CPP_LIB_TEMPLATE` (CMake option prefix)
     - `cpp-lib-template` (project and target names)
