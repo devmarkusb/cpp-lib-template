@@ -48,11 +48,11 @@ add_subdirectory(include/mb/cpp-lib-template)
 
 mb_install_library(mb.cpp-lib-template)
 
-add_subdirectory(src)
-
 if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
     enable_testing()
 endif()
+
+add_subdirectory(src)
 
 if(MB_CPP_LIB_TEMPLATE_BUILD_EXAMPLES)
     add_subdirectory(examples)
