@@ -8,6 +8,10 @@ probably needed for any C++ library. Especially a jump start
 towards connecting to a basic professional infrastructure
 for building and CI.
 
+This is for static libraries. There is also a
+[cpp-lib-template-header-only](https://github.com/devmarkusb/cpp-lib-template-header-only)
+for building a header-only library.
+
 ## Quick start
 
 The repo uses submodules (e.g. for `devenv`). After clone:
