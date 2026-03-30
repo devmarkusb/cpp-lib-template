@@ -1,14 +1,30 @@
 {
-  "version": 6,
+  "$schema": "https://raw.githubusercontent.com/Kitware/CMake/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 30,
+    "patch": 0
+  },
   "configurePresets": [
     {
       "name": "base",
       "hidden": true,
+      "description": "Shared generator, output dir, and portable CMake defaults.",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
+      "warnings": {
+        "dev": true,
+        "deprecated": true,
+        "unusedCli": true
+      },
       "cacheVariables": {
         "CMAKE_CXX_STANDARD": "26",
+        "CMAKE_CXX_EXTENSIONS": "OFF",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_COLOR_DIAGNOSTICS": "ON",
+        "CMAKE_WARN_DEPRECATED": "ON",
+        "CMAKE_LINK_WHAT_YOU_USE": "ON",
         "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "./devenv/cmake/fetch-content-from-lockfile.cmake"
       }
     },
@@ -61,6 +77,7 @@
     {
       "name": "gcc-debug",
       "displayName": "GCC Debug Build",
+      "description": "Ninja + GCC toolchain, Debug.",
       "inherits": [
         "base",
         "debug",
@@ -70,6 +87,7 @@
     {
       "name": "gcc-release",
       "displayName": "GCC Release Build",
+      "description": "Ninja + GCC toolchain, RelWithDebInfo.",
       "inherits": [
         "base",
         "release",
@@ -79,6 +97,7 @@
     {
       "name": "clang-debug",
       "displayName": "Clang Debug Build",
+      "description": "Ninja + Clang (libstdc++), Debug.",
       "inherits": [
         "base",
         "debug",
@@ -88,6 +107,7 @@
     {
       "name": "clang-release",
       "displayName": "Clang Release Build",
+      "description": "Ninja + Clang (libstdc++), RelWithDebInfo.",
       "inherits": [
         "base",
         "release",
@@ -97,6 +117,7 @@
     {
       "name": "clang-libc++-debug",
       "displayName": "Clang-libc++ Debug Build",
+      "description": "Ninja + Clang + libc++, Debug.",
       "inherits": [
         "base",
         "debug",
@@ -106,6 +127,7 @@
     {
       "name": "clang-libc++-release",
       "displayName": "Clang-libc++ Release Build",
+      "description": "Ninja + Clang + libc++, RelWithDebInfo.",
       "inherits": [
         "base",
         "release",
@@ -115,6 +137,7 @@
     {
       "name": "appleclang-debug",
       "displayName": "Appleclang Debug Build",
+      "description": "Ninja + Apple Clang, Debug.",
       "inherits": [
         "base",
         "debug",
@@ -124,6 +147,7 @@
     {
       "name": "appleclang-release",
       "displayName": "Appleclang Release Build",
+      "description": "Ninja + Apple Clang, RelWithDebInfo.",
       "inherits": [
         "base",
         "release",
@@ -133,6 +157,7 @@
     {
       "name": "msvc-debug",
       "displayName": "MSVC Debug Build",
+      "description": "Ninja + MSVC, Debug.",
       "inherits": [
         "base",
         "debug",
@@ -142,6 +167,7 @@
     {
       "name": "msvc-release",
       "displayName": "MSVC Release Build",
+      "description": "Ninja + MSVC, RelWithDebInfo.",
       "inherits": [
         "base",
         "release",
@@ -153,6 +179,7 @@
     {
       "name": "base",
       "hidden": true,
+      "description": "Use all CPU cores (jobs=0).",
       "jobs": 0
     },
     {
@@ -230,6 +257,7 @@
     {
       "name": "base",
       "hidden": true,
+      "description": "Fail if no tests; stop on first failure; show failing output.",
       "output": {
         "outputOnFailure": true
       },
@@ -292,6 +320,8 @@
   "workflowPresets": [
     {
       "name": "gcc-debug",
+      "displayName": "GCC Debug: configure, build, test",
+      "description": "Full local/CI loop for GCC Debug.",
       "steps": [
         {
           "type": "configure",
@@ -309,6 +339,8 @@
     },
     {
       "name": "gcc-release",
+      "displayName": "GCC Release: configure, build, test",
+      "description": "Full local/CI loop for GCC RelWithDebInfo.",
       "steps": [
         {
           "type": "configure",
@@ -326,6 +358,8 @@
     },
     {
       "name": "clang-debug",
+      "displayName": "Clang Debug: configure, build, test",
+      "description": "Full local/CI loop for Clang Debug.",
       "steps": [
         {
           "type": "configure",
@@ -343,6 +377,8 @@
     },
     {
       "name": "clang-release",
+      "displayName": "Clang Release: configure, build, test",
+      "description": "Full local/CI loop for Clang RelWithDebInfo.",
       "steps": [
         {
           "type": "configure",
@@ -360,6 +396,8 @@
     },
     {
       "name": "clang-libc++-debug",
+      "displayName": "Clang-libc++ Debug: configure, build, test",
+      "description": "Full local/CI loop for Clang + libc++ Debug.",
       "steps": [
         {
           "type": "configure",
@@ -377,6 +415,8 @@
     },
     {
       "name": "clang-libc++-release",
+      "displayName": "Clang-libc++ Release: configure, build, test",
+      "description": "Full local/CI loop for Clang + libc++ RelWithDebInfo.",
       "steps": [
         {
           "type": "configure",
@@ -394,6 +434,8 @@
     },
     {
       "name": "appleclang-debug",
+      "displayName": "Apple Clang Debug: configure, build, test",
+      "description": "Full local/CI loop for Apple Clang Debug.",
       "steps": [
         {
           "type": "configure",
@@ -411,6 +453,8 @@
     },
     {
       "name": "appleclang-release",
+      "displayName": "Apple Clang Release: configure, build, test",
+      "description": "Full local/CI loop for Apple Clang RelWithDebInfo.",
       "steps": [
         {
           "type": "configure",
@@ -428,6 +472,8 @@
     },
     {
       "name": "msvc-debug",
+      "displayName": "MSVC Debug: configure, build, test",
+      "description": "Full local/CI loop for MSVC Debug.",
       "steps": [
         {
           "type": "configure",
@@ -445,6 +491,8 @@
     },
     {
       "name": "msvc-release",
+      "displayName": "MSVC Release: configure, build, test",
+      "description": "Full local/CI loop for MSVC RelWithDebInfo.",
       "steps": [
         {
           "type": "configure",
