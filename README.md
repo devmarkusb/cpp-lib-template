@@ -94,16 +94,8 @@ C++ standard is 26 (23 for MSVC). Compile commands are exported for tooling. A d
 
 ### `devenv/`
 
-Development and CI support (often as a submodule):
-
-- **`bootstrap.sh`** — Creates `.venv`, installs pre-commit, runs `pre-commit install`.
-- **`git-sub.sh`** — `git submodule update --init --recursive` (and Git LFS pull if used).
-- **`cmake/install-library-config.cmake`** — Defines `mb_install_library()`: installs target, headers, and optional
-  config package (used by root `CMakeLists.txt`).
-- **`cmake/fetch-content-from-lockfile.cmake`** — CMake dependency provider: reads `fetchcontent-lockfile.json` and
-  provides packages (e.g. GTest) via FetchContent with locked versions.
-- **`cmake/toolchains/`** — Toolchain files for GCC, Clang, Clang-libc++, AppleClang, MSVC; optional sanitizers (e.g.
-  TSan, MaxSan) via `MB_SANITIZER`.
+Development and CI support (typically as a submodule): see
+<https://github.com/devmarkusb/devenv>.
 
 ### `examples/`
 

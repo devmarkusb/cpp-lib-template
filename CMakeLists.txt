@@ -35,7 +35,10 @@ option(
     ${PROJECT_IS_TOP_LEVEL}
 )
 
-include(devenv/cmake/install-library-config.cmake)
+include(devenv/cmake/mb-devenv-install-library-config.cmake)
+
+# From fetched https://github.com/devmarkusb/pre-commit (see fetchcontent-lockfile.json).
+mb_pre_commit_setup()
 
 if(MB_CPP_LIB_TEMPLATE_HEADER_ONLY)
     add_library(mb.cpp-lib-template INTERFACE)
@@ -47,16 +50,19 @@ add_library(mb::cpp-lib-template ALIAS mb.cpp-lib-template)
 
 if(MB_CPP_LIB_TEMPLATE_HEADER_ONLY)
     target_compile_definitions(
-        mb.cpp-lib-template INTERFACE MB_CPP_LIB_TEMPLATE_HEADER_ONLY=1
+        mb.cpp-lib-template
+        INTERFACE MB_CPP_LIB_TEMPLATE_HEADER_ONLY=1
     )
     target_sources(
         mb.cpp-lib-template
-        INTERFACE FILE_SET HEADERS BASE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include"
+        INTERFACE
+            FILE_SET HEADERS BASE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include"
     )
     set(_mb_cpp_lib_template_fs_scope INTERFACE)
 else()
     target_compile_definitions(
-        mb.cpp-lib-template PUBLIC MB_CPP_LIB_TEMPLATE_HEADER_ONLY=0
+        mb.cpp-lib-template
+        PUBLIC MB_CPP_LIB_TEMPLATE_HEADER_ONLY=0
     )
     target_sources(
         mb.cpp-lib-template
@@ -72,7 +78,7 @@ set_target_properties(
 
 add_subdirectory(include/mb/cpp-lib-template)
 
-mb_install_library(mb.cpp-lib-template)
+mb_devenv_install_library(mb.cpp-lib-template)
 
 if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
     enable_testing()
