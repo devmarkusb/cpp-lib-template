@@ -9,8 +9,11 @@
     {
       "name": "mb_dot_clangformat",
       "git_repository": "https://github.com/devmarkusb/dot-clangformat",
-      "git_tag": "v1.0.0",
-      "cmake_include": "cmake/mb-dot-clang-format.cmake"
+      "git_tag": "v1.1.0",
+      "cmake_include": "cmake/mb-dot-clang-format.cmake",
+      "cmake_variables": {
+        "MB_DOT_CLANG_FORMAT_CLANG_FORMAT_MAJOR": "22"
+      }
     },
     {
       "name": "googletest",

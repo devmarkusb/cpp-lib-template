@@ -117,7 +117,8 @@ When you improve the template itself, open a PR here; when you improve `devenv`,
 - **Preset names:** e.g. `gcc-debug`, `clang-release`, `msvc-debug`, `appleclang-release`.
 
 C++ standard is 26 (23 for MSVC). Compile commands are exported for tooling. A dependency provider uses
-`fetchcontent-lockfile.json` so `find_package(GTest)` is satisfied from locked Git versions without system GTest.
+`fetchcontent-lockfile.json` for pinned Git dependencies (`find_package` entries, optional `cmake_include` / per-dep
+`cmake_variables`; see `devenv/README.md` under **fetch-content-from-lockfile.cmake**).
 
 ## Directory structure
 
@@ -164,8 +165,8 @@ Development and CI support (typically as a submodule): see
 - **`CMakeLists.txt`** — Top-level: project, options, library target (static by default, or header-only `INTERFACE`
   when `MB_CPP_LIB_TEMPLATE_HEADER_ONLY=ON`), install, tests, examples.
 - **`CMakePresets.json`** — Configure, build, test, and workflow presets for multiple compilers and configs.
-- **`fetchcontent-lockfile.json`** — Locked dependencies for the CMake dependency provider (e.g. Googletest at a fixed
-  Git tag).
+- **`fetchcontent-lockfile.json`** — Pinned Git dependencies for the CMake dependency provider (e.g. Googletest); optional
+  fields include `cmake_variables` per dependency. Format is documented in `devenv/README.md`.
 - **`.pre-commit-config.yaml`** — Pre-commit hooks: trailing whitespace, EOF, JSON/YAML checks, clang-format, gersemi (
   CMake), markdownlint, codespell (hooks apply to repo; `devenv/` is excluded). To sync `.clang-format` from
   [devmarkusb/clangformat](https://github.com/devmarkusb/clangformat) (including versioned configs), run
