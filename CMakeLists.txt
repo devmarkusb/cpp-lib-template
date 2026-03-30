@@ -40,6 +40,12 @@ include(devenv/cmake/mb-devenv-install-library-config.cmake)
 # From fetched https://github.com/devmarkusb/pre-commit (see fetchcontent-lockfile.json).
 mb_pre_commit_setup()
 
+# From fetched https://github.com/devmarkusb/dot-clangformat (see fetchcontent-lockfile.json).
+# The included module only defines mb_dot_clang_format_install(); it does not run unless called.
+set(MB_DOT_CLANG_FORMAT_ENABLE ON)
+set(MB_DOT_CLANG_FORMAT_CLANG_FORMAT_MAJOR "22")
+mb_dot_clang_format_install()
+
 if(MB_CPP_LIB_TEMPLATE_HEADER_ONLY)
     add_library(mb.cpp-lib-template INTERFACE)
 else()

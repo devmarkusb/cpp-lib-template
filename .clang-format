@@ -58,7 +58,7 @@ AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: None
 AllowShortLoopsOnASingleLine: false
-AllowShortNamespacesOnASingleLine: true
+AllowShortNamespacesOnASingleLine: false
 AllowBreakBeforeNoexceptSpecifier: Never
 AllowBreakBeforeQtProperty: false
 AllowShortCaseExpressionOnASingleLine: true
@@ -207,7 +207,7 @@ ReflowComments: true
 RemoveBracesLLVM: false
 RemoveEmptyLinesInUnwrappedLines: true
 RemoveParentheses: ReturnStatement
-RemoveSemicolon: true
+RemoveSemicolon: false
 RequiresClausePosition: OwnLine
 RequiresExpressionIndentation: OuterScope
 SeparateDefinitionBlocks: Always
@@ -280,7 +280,7 @@ WhitespaceSensitiveMacros:
   - UL_WARNING_DISABLE_MSVC
 InsertBraces: false
 InsertNewlineAtEOF: true
-InsertTrailingCommas: Wrapped
+InsertTrailingCommas: None
 IntegerLiteralSeparator:
   Binary: 4
   BinaryMinDigitsInsert: 0
