@@ -8,9 +8,9 @@ probably needed for any C++ library. Especially a jump start
 towards connecting to a basic professional infrastructure
 for building and CI.
 
-This is for static libraries. There is also a
-[cpp-lib-template-header-only](https://github.com/devmarkusb/cpp-lib-template-header-only)
-for building a header-only library.
+By default, this builds a **static** library with a split header and `.cpp` implementation. Set
+`MB_CPP_LIB_TEMPLATE_HEADER_ONLY=ON` to build the same API as a **header-only** `INTERFACE` library (no object code in
+the library target; implementation is `inline` in the generated public header).
 
 ## Quick start
 
@@ -61,10 +61,11 @@ Then `pre-commit` runs on commit; you can also run `pre-commit run -a` manually.
 
 ## CMake options
 
-| Option                               | Default             | Description                              |
-|--------------------------------------|---------------------|------------------------------------------|
-| `MB_CPP_LIB_TEMPLATE_BUILD_TESTS`    | `ON` when top-level | Build tests and test infra (GoogleTest). |
-| `MB_CPP_LIB_TEMPLATE_BUILD_EXAMPLES` | `ON` when top-level | Build example executables.               |
+| Option                                  | Default             | Description                                                                 |
+|-----------------------------------------|---------------------|-----------------------------------------------------------------------------|
+| `MB_CPP_LIB_TEMPLATE_HEADER_ONLY`       | `OFF`               | Header-only `INTERFACE` library vs static library with sources under `src/`. |
+| `MB_CPP_LIB_TEMPLATE_BUILD_TESTS`       | `ON` when top-level | Build tests and test infra (GoogleTest).                                    |
+| `MB_CPP_LIB_TEMPLATE_BUILD_EXAMPLES`    | `ON` when top-level | Build example executables.                                                  |
 
 ## Build presets
 
@@ -111,17 +112,19 @@ Development and CI support (often as a submodule):
 
 ### `include/`
 
-- **`mb/cpp-lib-template/`** — Public headers. Template ships a single header `cpp-lib-template.hpp` and an INTERFACE
-  library; headers are exposed via a FILE_SET.
+- **`mb/cpp-lib-template/`** — Public headers, exposed via a FILE_SET.
 
 ### `src/`
 
-- **`cpp-lib-template/`** — Test sources (e.g. `cpp-lib-template.test.cpp` using GoogleTest). Built only when
-  `MB_CPP_LIB_TEMPLATE_BUILD_TESTS` is ON.
+- **`CMakeLists.txt`** — Adds compiled `.cpp` sources to the static library when `MB_CPP_LIB_TEMPLATE_HEADER_ONLY` is
+  OFF; registers tests when `MB_CPP_LIB_TEMPLATE_BUILD_TESTS` is ON.
+- **`cpp-lib-template.cpp`** — Library implementation (not used in header-only mode).
+- **`cpp-lib-template.test.cpp`** — GoogleTest sources; built only when `MB_CPP_LIB_TEMPLATE_BUILD_TESTS` is ON.
 
 ### Root files
 
-- **`CMakeLists.txt`** — Top-level: project, options, INTERFACE library, install, tests, examples.
+- **`CMakeLists.txt`** — Top-level: project, options, library target (static by default, or header-only `INTERFACE`
+  when `MB_CPP_LIB_TEMPLATE_HEADER_ONLY=ON`), install, tests, examples.
 - **`CMakePresets.json`** — Configure, build, test, and workflow presets for multiple compilers and configs.
 - **`fetchcontent-lockfile.json`** — Locked dependencies for the CMake dependency provider (e.g. Googletest at a fixed
   Git tag).
