@@ -376,7 +376,6 @@ Upstream repository: [devmarkusb/cpp-lib-template](https://github.com/devmarkusb
         (f"namespace: {OLD_VENDOR}", f"namespace: {args.vendor}"),
         # README title and optional GitHub slug
         ("# cpp-lib-template", f"# {args.lib_kebab}"),
-        ("ci_tests.yml", "ci.yml"),
         (
             'DESCRIPTION "C++ library template"',
             f'DESCRIPTION "{args.lib_kebab} library"',

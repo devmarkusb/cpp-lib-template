@@ -65,7 +65,10 @@
     {
       "name": "msvc",
       "hidden": true,
-      "toolchainFile": "devenv/cmake/toolchains/msvc-toolchain.cmake"
+      "toolchainFile": "devenv/cmake/toolchains/msvc-toolchain.cmake",
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD": "23"
+      }
     },
     {
       "name": "MaxSan",

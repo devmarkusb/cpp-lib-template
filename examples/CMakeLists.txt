@@ -1,7 +1,5 @@
 set(ALL_EXAMPLES usage)
 
-message("Examples to be built: ${ALL_EXAMPLES}")
-
 foreach(example ${ALL_EXAMPLES})
     add_executable(mb.cpp-lib-template.examples.${example})
     target_sources(

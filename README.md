@@ -26,7 +26,7 @@ To sync submodules (and optionally Git LFS) later, from the repo root:
 devenv/git-sub.sh
 ```
 
-**Build** (CMake 3.30+, C++26, Ninja). From repo root:
+**Build** (CMake 3.30+, C++26 by default — **MSVC presets use C++23**, Ninja). From repo root:
 
 ```bash
 cmake --preset gcc-debug
@@ -116,16 +116,22 @@ When you improve the template itself, open a PR here; when you improve `devenv`,
 - **Configurations:** Debug, RelWithDebInfo (release).
 - **Preset names:** e.g. `gcc-debug`, `clang-release`, `msvc-debug`, `appleclang-release`.
 
-C++ standard is 26 (23 for MSVC). Compile commands are exported for tooling. A dependency provider uses
+C++ standard is **26** for GCC/Clang/AppleClang presets and **23** for `msvc-*` presets (matches the MSVC columns in
+CI). Compile commands are exported for tooling. A dependency provider uses the **repo-root**
 `fetchcontent-lockfile.json` for pinned Git dependencies (`find_package` entries, optional `cmake_include` / per-dep
-`cmake_variables`; see `devenv/README.md` under **fetch-content-from-lockfile.cmake**).
+`cmake_variables`; see `devenv/README.md` under **fetch-content-from-lockfile.cmake**). If you configure **`devenv/` as
+the top-level CMake project** (using `devenv/CMakePresets.json`), that tree uses `devenv/fetchcontent-lockfile.json`
+instead — a minimal lockfile for devenv-only dev — so edit the root lockfile when working on the library template.
+
+Note: `SameMajorVersion` is used for the installed CMake package version file (see `mb_devenv_install_library` in
+`devenv`), so consumers can typically `find_package` with a compatible major version.
 
 ## Directory structure
 
 ### `.github/`
 
 - **`workflows/ci.yml`** — CI: preset-based build/test on Linux (GCC/Clang), macOS (AppleClang), Windows (MSVC);
-  extended build-and-test matrix (GCC 14/15, Clang 18/21, sanitizers, coverage); install test.
+  extended build-and-test matrix (GCC 15, Clang 18/21, sanitizers, coverage); install test.
 - **`workflows/pre-commit-check.yml`** — Runs pre-commit on push to `main` and on pull requests.
 - **`workflows/pre-commit-update.yml`** — Weekly (and manual) pre-commit hook autoupdate.
 
@@ -166,8 +172,10 @@ Development and CI support (typically as a submodule): see
   when `MB_CPP_LIB_TEMPLATE_HEADER_ONLY=ON`), install, tests, examples.
 - **`CMakePresets.json`** — Configure, build, test, and workflow presets for multiple compilers and configs.
 - **`fetchcontent-lockfile.json`** — Pinned Git dependencies for the CMake dependency provider (e.g. Googletest); optional
-  fields include `cmake_variables` per dependency. Format is documented in `devenv/README.md`.
-- **`.pre-commit-config.yaml`** — Pre-commit hooks: trailing whitespace, EOF, JSON/YAML checks, clang-format, gersemi (
-  CMake), markdownlint, codespell (hooks apply to repo; `devenv/` is excluded). To sync `.clang-format` from
+  fields include `cmake_variables` per dependency. Format is documented in `devenv/README.md`. See **Build presets**
+  above for the separate minimal lockfile under `devenv/` when building devenv alone.
+- **`.pre-commit-config.yaml`** — Pre-commit hooks: trailing whitespace, EOF, JSON/YAML checks, clang-format,
+  gersemi (CMake), markdownlint, codespell (runs on the whole tree, including `devenv/` when checked out as a
+  submodule — cheap and catches drift if you touch it). To sync `.clang-format` from
   [devmarkusb/clangformat](https://github.com/devmarkusb/clangformat) (including versioned configs), run
   `cd devenv && ./sync-clang-format.sh [VERSION]` (run from inside `devenv`).
