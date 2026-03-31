@@ -132,7 +132,8 @@ DerivePointerAlignment: false
 DisableFormat: false
 EmptyLineBeforeAccessModifier: Always
 EmptyLineAfterAccessModifier: Never
-EnumTrailingComma: Insert
+# Insert can emit a lone "," enumerator line with BreakBeforeCloseBracketBracedList (clang-format bug/interaction).
+EnumTrailingComma: Leave
 ExperimentalAutoDetectBinPacking: false
 FixNamespaceComments: true
 ForEachMacros: [foreach, FOREACH, Q_FOREACH, BOOST_FOREACH]
