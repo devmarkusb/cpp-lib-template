@@ -35,6 +35,7 @@ option(
     ${PROJECT_IS_TOP_LEVEL}
 )
 
+add_subdirectory(devenv)
 list(PREPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/devenv/cmake")
 
 if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
