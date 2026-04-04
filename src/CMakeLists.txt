@@ -18,15 +18,4 @@ if(NOT MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
 endif()
 
 include(mb-devenv-googletest)
-
-file(GLOB_RECURSE test_sources CONFIGURE_DEPENDS "*.test.cpp")
-
-add_executable(mb.cpp-lib-template.test)
-target_sources(mb.cpp-lib-template.test PRIVATE ${test_sources})
-target_link_libraries(
-    mb.cpp-lib-template.test
-    PRIVATE mb::cpp-lib-template GTest::gtest_main
-)
-
-mb_devenv_set_target_essentials(mb.cpp-lib-template.test)
-mb_devenv_add_test(mb.cpp-lib-template.test)
+mb_devenv_add_test(mb.cpp-lib-template.test PRIVATE mb::cpp-lib-template)
