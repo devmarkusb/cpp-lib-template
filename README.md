@@ -102,11 +102,11 @@ When you improve the template itself, open a PR here; when you improve `devenv`,
 
 ## CMake options
 
-| Option                                  | Default             | Description                                                                 |
-|-----------------------------------------|---------------------|-----------------------------------------------------------------------------|
-| `MB_CPP_LIB_TEMPLATE_HEADER_ONLY`       | `OFF`               | Header-only `INTERFACE` library vs static library with sources under `src/`. |
-| `MB_CPP_LIB_TEMPLATE_BUILD_TESTS`       | `ON` when top-level | Build tests and test infra (GoogleTest).                                    |
-| `MB_CPP_LIB_TEMPLATE_BUILD_EXAMPLES`    | `ON` when top-level | Build example executables.                                                  |
+| Option                               | Default             | Description                                                                  |
+|--------------------------------------|---------------------|------------------------------------------------------------------------------|
+| `MB_CPP_LIB_TEMPLATE_HEADER_ONLY`    | `OFF`               | Header-only `INTERFACE` library vs static library with sources under `src/`. |
+| `MB_CPP_LIB_TEMPLATE_BUILD_TESTS`    | `ON` when top-level | Build tests and test infra (GoogleTest).                                     |
+| `MB_CPP_LIB_TEMPLATE_BUILD_EXAMPLES` | `ON` when top-level | Build example executables.                                                   |
 
 ## Build presets
 
