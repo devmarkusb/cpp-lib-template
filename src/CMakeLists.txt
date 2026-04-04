@@ -1,6 +1,7 @@
 if(NOT MB_CPP_LIB_TEMPLATE_HEADER_ONLY)
     file(GLOB_RECURSE sources CONFIGURE_DEPENDS "*.cpp")
     list(FILTER sources EXCLUDE REGEX "\\.test\\.cpp$")
+    list(FILTER sources EXCLUDE REGEX "compile-check\\.cpp$")
     target_sources(mb.cpp-lib-template PRIVATE ${sources})
 endif()
 
