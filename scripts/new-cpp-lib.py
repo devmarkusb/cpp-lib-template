@@ -43,19 +43,28 @@ OLD_CMAKELISTS_HEADER = """# What you will rename, when starting a real project:
 # - mb/
 """
 
-OLD_README_USAGE_SECTION = """## Usage when starting a new library
+# README directory-structure link to the usage section (updated after readme_usage_new replaces that heading).
+OLD_README_USAGE_LINK = (
+    "[Usage when starting a new library](#usage-when-starting-a-new-library)"
+)
+NEW_README_USAGE_LINK = (
+    "[Syncing with the upstream template](#syncing-with-the-upstream-template)"
+)
 
-1. Create your new repo (e.g. on GitHub).
-2. Copy everything except devenv, .git, and similar, from this template.
-3. Add <https://github.com/devmarkusb/devenv> as submodule, cf. README.md there.
-4. Rename namespace and library names everywhere. See the top comment in `CMakeLists.txt` for what to change:
-    - `MB_CPP_LIB_TEMPLATE` (CMake option prefix)
-    - `cpp-lib-template` (project and target names)
-    - `mb.` / `mb::` / `mb/` (namespace and install layout)
-    - files and dirs
-5. Go. When you find improvements that belong in the template, consider contributing them back here.
 
-"""
+def extract_readme_usage_section(readme: str) -> str:
+    """Slice between Usage and CMake options headings (must match README.md in this template)."""
+    start = "## Usage when starting a new library"
+    end = "## CMake options"
+    try:
+        i = readme.index(start)
+        j = readme.index(end, i)
+    except ValueError:
+        die(
+            "README.md must contain '## Usage when starting a new library' and "
+            "'## CMake options' in that order."
+        )
+    return readme[i:j]
 
 
 def die(msg: str, code: int = 1) -> None:
@@ -360,9 +369,13 @@ Upstream repository: [devmarkusb/cpp-lib-template](https://github.com/devmarkusb
 
 """
 
+    readme_text = (root / "README.md").read_text(encoding="utf-8")
+    old_readme_usage = extract_readme_usage_section(readme_text)
+
     replacements: list[tuple[str, str]] = [
         (OLD_CMAKELISTS_HEADER, cmakelists_header_new),
-        (OLD_README_USAGE_SECTION, readme_usage_new),
+        (old_readme_usage, readme_usage_new),
+        (OLD_README_USAGE_LINK, NEW_README_USAGE_LINK),
         (OLD_CMAKE_ALIAS, new_alias),
         (OLD_CMAKE_PROJECT, new_cmake),
         (OLD_CXX_NS, new_cxx),
