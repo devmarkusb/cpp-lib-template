@@ -8,7 +8,7 @@ if(NOT MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
     return()
 endif()
 
-find_package(GTest REQUIRED)
+include(mb-devenv-googletest)
 
 file(GLOB_RECURSE test_sources CONFIGURE_DEPENDS "*.test.cpp")
 
@@ -19,5 +19,4 @@ target_link_libraries(
     PRIVATE mb::cpp-lib-template GTest::gtest_main
 )
 
-include(GoogleTest)
-gtest_discover_tests(mb.cpp-lib-template.test)
+mb_devenv_add_test(mb.cpp-lib-template.test)

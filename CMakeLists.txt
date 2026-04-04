@@ -35,7 +35,8 @@ option(
     ${PROJECT_IS_TOP_LEVEL}
 )
 
-include(devenv/cmake/mb-devenv-install-library-config.cmake)
+list(PREPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/devenv/cmake")
+include(mb-devenv-install-library-config)
 
 # From fetched https://github.com/devmarkusb/pre-commit (see fetchcontent-lockfile.json).
 mb_pre_commit_setup()
@@ -79,10 +80,6 @@ set_target_properties(
 add_subdirectory(include/mb/cpp-lib-template)
 
 mb_devenv_install_library(mb.cpp-lib-template)
-
-if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
-    enable_testing()
-endif()
 
 add_subdirectory(src)
 
