@@ -36,6 +36,10 @@ option(
 )
 
 list(PREPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/devenv/cmake")
+
+if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
+    include(mb-devenv-ctest-root)
+endif()
 include(mb-devenv-defaults)
 include(mb-devenv-install-library-config)
 

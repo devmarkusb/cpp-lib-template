@@ -19,4 +19,5 @@ target_link_libraries(
     PRIVATE mb::cpp-lib-template GTest::gtest_main
 )
 
+mb_devenv_set_target_essentials(mb.cpp-lib-template.test)
 mb_devenv_add_test(mb.cpp-lib-template.test)
