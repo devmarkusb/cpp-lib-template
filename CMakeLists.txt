@@ -12,7 +12,7 @@ project(
     # targets (e.g., library, executable, etc.).
     DESCRIPTION "C++ library template"
     LANGUAGES CXX
-    VERSION 0.1.0
+    VERSION 1.0.0
 )
 
 option(
