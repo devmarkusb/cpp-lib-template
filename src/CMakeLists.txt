@@ -4,6 +4,14 @@ if(NOT MB_CPP_LIB_TEMPLATE_HEADER_ONLY)
     target_sources(mb.cpp-lib-template PRIVATE ${sources})
 endif()
 
+add_executable(mb.cpp-lib-template.compile-check)
+target_sources(mb.cpp-lib-template.compile-check PRIVATE compile-check.cpp)
+target_link_libraries(
+    mb.cpp-lib-template.compile-check
+    PRIVATE mb::cpp-lib-template
+)
+mb_devenv_set_target_defaults(mb.cpp-lib-template.compile-check)
+
 if(NOT MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
     return()
 endif()
