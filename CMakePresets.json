@@ -131,6 +131,7 @@
         "clang",
         "debug",
         "MaxWarnClang",
+        "MaxSan",
         "base"
       ]
     },
@@ -153,6 +154,7 @@
         "clang-libc++",
         "debug",
         "MaxWarnClang",
+        "MaxSan",
         "base"
       ]
     },
