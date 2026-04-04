@@ -36,6 +36,7 @@ option(
 )
 
 list(PREPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/devenv/cmake")
+include(mb-devenv-defaults)
 include(mb-devenv-install-library-config)
 
 # From fetched https://github.com/devmarkusb/pre-commit (see fetchcontent-lockfile.json).
@@ -48,6 +49,8 @@ else()
 endif()
 
 add_library(mb::cpp-lib-template ALIAS mb.cpp-lib-template)
+
+mb_devenv_set_target_defaults(mb.cpp-lib-template)
 
 if(MB_CPP_LIB_TEMPLATE_HEADER_ONLY)
     target_compile_definitions(
@@ -72,16 +75,11 @@ else()
     set(_mb_cpp_lib_template_fs_scope PUBLIC)
 endif()
 
-set_target_properties(
-    mb.cpp-lib-template
-    PROPERTIES VERIFY_INTERFACE_HEADER_SETS ON
-)
-
 add_subdirectory(include/mb/cpp-lib-template)
 
-mb_devenv_install_library(mb.cpp-lib-template)
-
 add_subdirectory(src)
+
+mb_devenv_install_library(mb.cpp-lib-template)
 
 if(MB_CPP_LIB_TEMPLATE_BUILD_EXAMPLES)
     add_subdirectory(examples)

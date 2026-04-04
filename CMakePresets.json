@@ -74,10 +74,33 @@
       }
     },
     {
+      "name": "MaxWarnClang",
+      "hidden": true,
+      "description": "Duplicates mb_ul_set_target_warnings Clang compile options via global CMAKE_CXX_FLAGS so they apply project-wide; this can break builds that pull in third-party sources (e.g. FetchContent) that do not compile cleanly under -Werror and the rest. Does not pass -D_FORTIFY_SOURCE=3 here (glibc requires -O; Debug would fail with -Werror); mb_ul_set_target_warnings still sets it for Release-family configs. Adds -Wno-unused-command-line-argument so globally ignored -f flags on some platforms do not fail the build. Adds -Wno-poison-system-directories so -Werror does not fail when Clang rejects host include paths (e.g. /usr/local/include) during cross-compilation.",
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS": "-D_GLIBCXX_ASSERTIONS -fexceptions -fno-builtin -fstack-clash-protection -fstack-protector-strong -U_FORTIFY_SOURCE -fno-delete-null-pointer-checks -fno-strict-overflow -fno-strict-aliasing -fno-limit-debug-info -fstrict-flex-arrays=3 -Wall -Wconversion -Werror -Wextra -Wformat -Wformat=2 -Wimplicit-fallthrough -Wno-deprecated-declarations -Wpedantic -Wsign-conversion -Wdocumentation -Wmissing-prototypes -Wno-c++11-narrowing -Wno-c++20-compat -Wno-switch-default -Wno-unused-command-line-argument -Wno-poison-system-directories",
+        "MB_UL_ALL_WARNINGS": "ON"
+      }
+    },
+    {
       "name": "MaxSan",
       "hidden": true,
       "cacheVariables": {
         "MB_DEVENV_SANITIZER": "MaxSan"
+      }
+    },
+    {
+      "name": "TSan",
+      "hidden": true,
+      "cacheVariables": {
+        "MB_DEVENV_SANITIZER": "TSan"
+      }
+    },
+    {
+      "name": "MSan",
+      "hidden": true,
+      "cacheVariables": {
+        "MB_DEVENV_SANITIZER": "MSan"
       }
     },
     {
@@ -107,6 +130,8 @@
       "inherits": [
         "clang",
         "debug",
+        "MaxWarnClang",
+        "MaxSan",
         "base"
       ]
     },
@@ -117,6 +142,7 @@
       "inherits": [
         "clang",
         "release",
+        "MaxWarnClang",
         "base"
       ]
     },
@@ -127,6 +153,8 @@
       "inherits": [
         "clang-libc++",
         "debug",
+        "MaxWarnClang",
+        "MaxSan",
         "base"
       ]
     },
@@ -137,6 +165,7 @@
       "inherits": [
         "clang-libc++",
         "release",
+        "MaxWarnClang",
         "base"
       ]
     },
@@ -147,6 +176,8 @@
       "inherits": [
         "appleclang",
         "debug",
+        "MaxWarnClang",
+        "MaxSan",
         "base"
       ]
     },
@@ -157,7 +188,17 @@
       "inherits": [
         "appleclang",
         "release",
+        "MaxWarnClang",
         "base"
+      ]
+    },
+    {
+      "name": "appleclang-maxsan-release",
+      "displayName": "Appleclang MaxSan Release Build",
+      "description": "Ninja + Apple Clang, MaxSan, RelWithDebInfo.",
+      "inherits": [
+        "MaxSan",
+        "appleclang-release"
       ]
     },
     {
@@ -245,6 +286,13 @@
       ]
     },
     {
+      "name": "appleclang-maxsan-release",
+      "configurePreset": "appleclang-maxsan-release",
+      "inherits": [
+        "base"
+      ]
+    },
+    {
       "name": "msvc-debug",
       "configurePreset": "msvc-debug",
       "inherits": [
@@ -311,6 +359,11 @@
       "name": "appleclang-release",
       "inherits": "base",
       "configurePreset": "appleclang-release"
+    },
+    {
+      "name": "appleclang-maxsan-release",
+      "inherits": "base",
+      "configurePreset": "appleclang-maxsan-release"
     },
     {
       "name": "msvc-debug",
@@ -473,6 +526,25 @@
         {
           "type": "test",
           "name": "appleclang-release"
+        }
+      ]
+    },
+    {
+      "name": "appleclang-maxsan-release",
+      "displayName": "Apple Clang MaxSan Release: configure, build, test",
+      "description": "Full local/CI loop for Apple Clang MaxSan RelWithDebInfo.",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "appleclang-maxsan-release"
+        },
+        {
+          "type": "build",
+          "name": "appleclang-maxsan-release"
+        },
+        {
+          "type": "test",
+          "name": "appleclang-maxsan-release"
         }
       ]
     },
