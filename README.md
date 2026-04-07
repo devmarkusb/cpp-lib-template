@@ -176,6 +176,4 @@ Development and CI support (typically as a submodule): see
   above for the separate minimal lockfile under `devenv/` when building devenv alone.
 - **`.pre-commit-config.yaml`** — Pre-commit hooks: trailing whitespace, EOF, JSON/YAML checks, clang-format,
   gersemi (CMake), markdownlint, codespell (runs on the whole tree, including `devenv/` when checked out as a
-  submodule — cheap and catches drift if you touch it). To sync `.clang-format` from
-  [devmarkusb/clangformat](https://github.com/devmarkusb/clangformat) (including versioned configs), run
-  `cd devenv && ./sync-clang-format.sh [VERSION]` (run from inside `devenv`).
+  submodule — cheap and catches drift if you touch it).
