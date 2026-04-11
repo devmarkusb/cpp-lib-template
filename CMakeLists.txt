@@ -62,20 +62,11 @@ if(MB_CPP_LIB_TEMPLATE_HEADER_ONLY)
         mb.cpp-lib-template
         INTERFACE MB_CPP_LIB_TEMPLATE_HEADER_ONLY=1
     )
-    target_sources(
-        mb.cpp-lib-template
-        INTERFACE
-            FILE_SET HEADERS BASE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include"
-    )
     set(_mb_cpp_lib_template_fs_scope INTERFACE)
 else()
     target_compile_definitions(
         mb.cpp-lib-template
         PUBLIC MB_CPP_LIB_TEMPLATE_HEADER_ONLY=0
-    )
-    target_sources(
-        mb.cpp-lib-template
-        PUBLIC FILE_SET HEADERS BASE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include"
     )
     set(_mb_cpp_lib_template_fs_scope PUBLIC)
 endif()
