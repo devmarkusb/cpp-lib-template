@@ -1,0 +1,21 @@
+name: cppcheck
+
+on:
+  pull_request:
+    paths: ["**/*.cpp", "**/*.hpp", "**/*.h", "cmake/**", "devenv/cmake/**",
+            "CppCheckSuppressions.txt", "devenv/run-cppcheck.sh"]
+  push:
+    branches: [main]
+    paths: ["**/*.cpp", "**/*.hpp", "**/*.h", "cmake/**", "devenv/cmake/**",
+            "CppCheckSuppressions.txt", "devenv/run-cppcheck.sh"]
+  schedule:
+    - cron: "31 4 * * 0"
+  workflow_dispatch:
+
+concurrency:
+  group: cppcheck-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  cppcheck:
+    uses: devmarkusb/devenv/.github/workflows/cppcheck.yml@main
