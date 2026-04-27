@@ -82,8 +82,8 @@ def validate_segment(name: str, kind: str) -> None:
 
 def kebab_to_cxx_namespace(vendor: str, lib_kebab: str) -> str:
     v = vendor.replace("-", "_")
-    l = lib_kebab.replace("-", "_")
-    return f"{v}::{l}"
+    lib = lib_kebab.replace("-", "_")
+    return f"{v}::{lib}"
 
 
 def cmake_option_prefix(cmake_project: str) -> str:
@@ -266,7 +266,7 @@ def git_initial_commit(dest: Path) -> None:
     if r.returncode != 0:
         die(
             "Could not create initial commit (set git user.name and user.email). "
-            "Then run: git add -A && git commit -m \"Initial import from cpp-lib-template\""
+            'Then run: git add -A && git commit -m "Initial import from cpp-lib-template"'
         )
 
 
@@ -414,7 +414,9 @@ Upstream repository: [devmarkusb/cpp-lib-template](https://github.com/devmarkusb
             "Tip: search for devmarkusb/cpp-lib-template in README.md and set your CI badge URLs,"
             " or re-run with --github OWNER/REPO."
         )
-    print("Next: cd there, cmake --preset gcc-debug && cmake --build build/gcc-debug && ctest --preset gcc-debug")
+    print(
+        "Next: cd there, cmake --preset gcc-debug && cmake --build build/gcc-debug && ctest --preset gcc-debug"
+    )
 
 
 if __name__ == "__main__":
