@@ -1,0 +1,15 @@
+---
+description: cpp-lib-template — canonical agent constraints (see AGENTS.md)
+alwaysApply: true
+---
+
+# Repository rules
+
+Follow **AGENTS.md** at the repo root for build/test/lint commands, layout, and safety.
+
+Quick constraints:
+
+- Initialize `devenv` submodule before CMake work.
+- Do not edit `fetchcontent-lockfile.json`, `build/`, or `devenv/` without explicit user approval.
+- Run `ctest --preset <preset>` and `mb-pre-commit-sweep` (via CMake build target) when changing code or hooks.
+- CMake project name must remain `vendor.lib` (two segments); namespace/target patterns are documented in AGENTS.md.
