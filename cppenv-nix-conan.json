@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "description": "Project-local dev env kit config",
+  "default_shell": "gcc15",
+  "platform_default_shells": {
+    "darwin": "appleclang",
+    "linux": "gcc15"
+  },
+  "systems": [
+    "x86_64-linux",
+    "aarch64-linux",
+    "x86_64-darwin",
+    "aarch64-darwin"
+  ],
+  "conanfile": {
+    "format": "txt",
+    "generators": [
+      "CMakeDeps",
+      "CMakeToolchain"
+    ],
+    "requires": []
+  },
+  "bootstrap": {
+    "nix_installer": "determinate",
+    "install_nix": true,
+    "install_direnv": true,
+    "install_xcode_clt_on_macos": true,
+    "configure_direnv_hook": true,
+    "shell_rc_file": "~/.zshrc"
+  },
+  "cmake_presets": {
+    "path": "CMakePresets.json",
+    "base_preset_name": "nix-conan",
+    "source_presets": [
+      "gcc-debug",
+      "gcc-release",
+      "clang-debug",
+      "clang-release",
+      "clang-libc++-debug",
+      "clang-libc++-release",
+      "appleclang-debug",
+      "appleclang-release",
+      "appleclang-maxsan-release"
+    ],
+    "auto_sync_on_render": false
+  },
+  "shells": {
+    "gcc15": {
+      "packages": [
+        "cmake",
+        "ninja",
+        "pkg-config",
+        "conan",
+        "gcc15"
+      ]
+    },
+    "clang21": {
+      "packages": [
+        "cmake",
+        "ninja",
+        "pkg-config",
+        "conan",
+        "clang_21"
+      ]
+    },
+    "clang21-libcxx": {
+      "packages": [
+        "cmake",
+        "ninja",
+        "pkg-config",
+        "conan",
+        "clang_21",
+        "libcxx"
+      ]
+    },
+    "appleclang": {
+      "packages": [
+        "cmake",
+        "ninja",
+        "pkg-config",
+        "conan"
+      ],
+      "env": {
+        "CC": "/usr/bin/cc",
+        "CXX": "/usr/bin/c++"
+      }
+    }
+  },
+  "conan_profiles": {
+    "linux-gcc-debug": {
+      "include": "default",
+      "settings": {
+        "build_type": "Debug",
+        "compiler": "gcc",
+        "compiler.version": "15",
+        "compiler.cppstd": "26",
+        "compiler.libcxx": "libstdc++11"
+      },
+      "user_toolchain": "devenv/cmake/toolchains/gcc-toolchain.cmake"
+    },
+    "linux-gcc-release": {
+      "include": "default",
+      "settings": {
+        "build_type": "RelWithDebInfo",
+        "compiler": "gcc",
+        "compiler.version": "15",
+        "compiler.cppstd": "26",
+        "compiler.libcxx": "libstdc++11"
+      },
+      "user_toolchain": "devenv/cmake/toolchains/gcc-toolchain.cmake"
+    },
+    "linux-clang-debug": {
+      "include": "default",
+      "settings": {
+        "build_type": "Debug",
+        "compiler": "clang",
+        "compiler.version": "21",
+        "compiler.cppstd": "26",
+        "compiler.libcxx": "libstdc++11"
+      },
+      "user_toolchain": "devenv/cmake/toolchains/clang-toolchain.cmake"
+    },
+    "linux-clang-release": {
+      "include": "default",
+      "settings": {
+        "build_type": "RelWithDebInfo",
+        "compiler": "clang",
+        "compiler.version": "21",
+        "compiler.cppstd": "26",
+        "compiler.libcxx": "libstdc++11"
+      },
+      "user_toolchain": "devenv/cmake/toolchains/clang-toolchain.cmake"
+    },
+    "linux-clang-libcxx-debug": {
+      "include": "default",
+      "settings": {
+        "build_type": "Debug",
+        "compiler": "clang",
+        "compiler.version": "21",
+        "compiler.cppstd": "26",
+        "compiler.libcxx": "libc++"
+      },
+      "user_toolchain": "devenv/cmake/toolchains/clang-libc++-toolchain.cmake"
+    },
+    "linux-clang-libcxx-release": {
+      "include": "default",
+      "settings": {
+        "build_type": "RelWithDebInfo",
+        "compiler": "clang",
+        "compiler.version": "21",
+        "compiler.cppstd": "26",
+        "compiler.libcxx": "libc++"
+      },
+      "user_toolchain": "devenv/cmake/toolchains/clang-libc++-toolchain.cmake"
+    },
+    "macos-appleclang-debug": {
+      "include": "default",
+      "settings": {
+        "build_type": "Debug",
+        "compiler.cppstd": "23",
+        "compiler.libcxx": "libc++"
+      },
+      "user_toolchain": "devenv/cmake/toolchains/appleclang-toolchain.cmake"
+    },
+    "macos-appleclang-release": {
+      "include": "default",
+      "settings": {
+        "build_type": "RelWithDebInfo",
+        "compiler.cppstd": "23",
+        "compiler.libcxx": "libc++"
+      },
+      "user_toolchain": "devenv/cmake/toolchains/appleclang-toolchain.cmake"
+    }
+  }
+}

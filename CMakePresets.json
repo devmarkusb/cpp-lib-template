@@ -230,7 +230,7 @@
     {
       "name": "nix-conan-gcc-debug",
       "displayName": "Nix+Conan GCC Debug Build",
-      "description": "Ninja + Conan toolchain + devenv GCC toolchain, Debug.",
+      "description": "Nix+Conan variant of `gcc-debug`.",
       "inherits": [
         "nix-conan",
         "debug",
@@ -242,7 +242,7 @@
     {
       "name": "nix-conan-gcc-release",
       "displayName": "Nix+Conan GCC Release Build",
-      "description": "Ninja + Conan toolchain + devenv GCC toolchain, RelWithDebInfo.",
+      "description": "Nix+Conan variant of `gcc-release`.",
       "inherits": [
         "nix-conan",
         "release",
@@ -253,7 +253,7 @@
     {
       "name": "nix-conan-clang-debug",
       "displayName": "Nix+Conan Clang Debug Build",
-      "description": "Ninja + Conan toolchain + devenv Clang toolchain, Debug.",
+      "description": "Nix+Conan variant of `clang-debug`.",
       "inherits": [
         "nix-conan",
         "debug",
@@ -265,7 +265,7 @@
     {
       "name": "nix-conan-clang-release",
       "displayName": "Nix+Conan Clang Release Build",
-      "description": "Ninja + Conan toolchain + devenv Clang toolchain, RelWithDebInfo.",
+      "description": "Nix+Conan variant of `clang-release`.",
       "inherits": [
         "nix-conan",
         "release",
@@ -276,7 +276,7 @@
     {
       "name": "nix-conan-clang-libc++-debug",
       "displayName": "Nix+Conan Clang-libc++ Debug Build",
-      "description": "Ninja + Conan toolchain + devenv Clang libc++ toolchain, Debug.",
+      "description": "Nix+Conan variant of `clang-libc++-debug`.",
       "inherits": [
         "nix-conan",
         "debug",
@@ -288,7 +288,7 @@
     {
       "name": "nix-conan-clang-libc++-release",
       "displayName": "Nix+Conan Clang-libc++ Release Build",
-      "description": "Ninja + Conan toolchain + devenv Clang libc++ toolchain, RelWithDebInfo.",
+      "description": "Nix+Conan variant of `clang-libc++-release`.",
       "inherits": [
         "nix-conan",
         "release",
@@ -299,39 +299,34 @@
     {
       "name": "nix-conan-appleclang-debug",
       "displayName": "Nix+Conan Appleclang Debug Build",
-      "description": "Ninja + Conan toolchain + devenv Apple Clang toolchain, Debug.",
+      "description": "Nix+Conan variant of `appleclang-debug`.",
       "inherits": [
         "nix-conan",
         "debug",
         "EveryWarnClang",
         "MaxSan",
         "base"
-      ],
-      "cacheVariables": {
-        "CMAKE_CXX_STANDARD": "23"
-      }
+      ]
     },
     {
       "name": "nix-conan-appleclang-release",
       "displayName": "Nix+Conan Appleclang Release Build",
-      "description": "Ninja + Conan toolchain + devenv Apple Clang toolchain, RelWithDebInfo.",
+      "description": "Nix+Conan variant of `appleclang-release`.",
       "inherits": [
         "nix-conan",
         "release",
         "EveryWarnClang",
         "base"
-      ],
-      "cacheVariables": {
-        "CMAKE_CXX_STANDARD": "23"
-      }
+      ]
     },
     {
       "name": "nix-conan-appleclang-maxsan-release",
       "displayName": "Nix+Conan Appleclang MaxSan Release Build",
-      "description": "Ninja + Conan toolchain + devenv Apple Clang toolchain, MaxSan, RelWithDebInfo.",
+      "description": "Nix+Conan variant of `appleclang-maxsan-release`.",
       "inherits": [
+        "nix-conan",
         "MaxSan",
-        "nix-conan-appleclang-release"
+        "appleclang-release"
       ]
     },
     {
@@ -792,8 +787,8 @@
     },
     {
       "name": "nix-conan-gcc-debug",
-      "displayName": "Nix+Conan GCC Debug: configure, build, test",
-      "description": "Nix+Conan local/CI loop for GCC Debug.",
+      "displayName": "Nix+Conan GCC Debug Build: configure, build, test",
+      "description": "Nix+Conan local/CI loop for gcc-debug.",
       "steps": [
         {
           "type": "configure",
@@ -811,8 +806,8 @@
     },
     {
       "name": "nix-conan-gcc-release",
-      "displayName": "Nix+Conan GCC Release: configure, build, test",
-      "description": "Nix+Conan local/CI loop for GCC RelWithDebInfo.",
+      "displayName": "Nix+Conan GCC Release Build: configure, build, test",
+      "description": "Nix+Conan local/CI loop for gcc-release.",
       "steps": [
         {
           "type": "configure",
@@ -830,8 +825,8 @@
     },
     {
       "name": "nix-conan-clang-debug",
-      "displayName": "Nix+Conan Clang Debug: configure, build, test",
-      "description": "Nix+Conan local/CI loop for Clang Debug.",
+      "displayName": "Nix+Conan Clang Debug Build: configure, build, test",
+      "description": "Nix+Conan local/CI loop for clang-debug.",
       "steps": [
         {
           "type": "configure",
@@ -849,8 +844,8 @@
     },
     {
       "name": "nix-conan-clang-release",
-      "displayName": "Nix+Conan Clang Release: configure, build, test",
-      "description": "Nix+Conan local/CI loop for Clang RelWithDebInfo.",
+      "displayName": "Nix+Conan Clang Release Build: configure, build, test",
+      "description": "Nix+Conan local/CI loop for clang-release.",
       "steps": [
         {
           "type": "configure",
@@ -868,8 +863,8 @@
     },
     {
       "name": "nix-conan-clang-libc++-debug",
-      "displayName": "Nix+Conan Clang-libc++ Debug: configure, build, test",
-      "description": "Nix+Conan local/CI loop for Clang libc++ Debug.",
+      "displayName": "Nix+Conan Clang-libc++ Debug Build: configure, build, test",
+      "description": "Nix+Conan local/CI loop for clang-libc++-debug.",
       "steps": [
         {
           "type": "configure",
@@ -887,8 +882,8 @@
     },
     {
       "name": "nix-conan-clang-libc++-release",
-      "displayName": "Nix+Conan Clang-libc++ Release: configure, build, test",
-      "description": "Nix+Conan local/CI loop for Clang libc++ RelWithDebInfo.",
+      "displayName": "Nix+Conan Clang-libc++ Release Build: configure, build, test",
+      "description": "Nix+Conan local/CI loop for clang-libc++-release.",
       "steps": [
         {
           "type": "configure",
@@ -906,8 +901,8 @@
     },
     {
       "name": "nix-conan-appleclang-debug",
-      "displayName": "Nix+Conan Apple Clang Debug: configure, build, test",
-      "description": "Nix+Conan local/CI loop for Apple Clang Debug.",
+      "displayName": "Nix+Conan Appleclang Debug Build: configure, build, test",
+      "description": "Nix+Conan local/CI loop for appleclang-debug.",
       "steps": [
         {
           "type": "configure",
@@ -925,8 +920,8 @@
     },
     {
       "name": "nix-conan-appleclang-release",
-      "displayName": "Nix+Conan Apple Clang Release: configure, build, test",
-      "description": "Nix+Conan local/CI loop for Apple Clang RelWithDebInfo.",
+      "displayName": "Nix+Conan Appleclang Release Build: configure, build, test",
+      "description": "Nix+Conan local/CI loop for appleclang-release.",
       "steps": [
         {
           "type": "configure",
@@ -944,8 +939,8 @@
     },
     {
       "name": "nix-conan-appleclang-maxsan-release",
-      "displayName": "Nix+Conan Apple Clang MaxSan Release: configure, build, test",
-      "description": "Nix+Conan local/CI loop for Apple Clang MaxSan RelWithDebInfo.",
+      "displayName": "Nix+Conan Appleclang MaxSan Release Build: configure, build, test",
+      "description": "Nix+Conan local/CI loop for appleclang-maxsan-release.",
       "steps": [
         {
           "type": "configure",
