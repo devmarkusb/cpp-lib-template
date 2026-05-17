@@ -1,0 +1,10 @@
+include(default)
+
+[settings]
+build_type=Debug
+compiler.cppstd=23
+compiler.libcxx=libc++
+
+[conf]
+tools.cmake.cmaketoolchain:generator=Ninja
+tools.cmake.cmaketoolchain:user_toolchain=["devenv/cmake/toolchains/appleclang-toolchain.cmake"]

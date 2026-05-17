@@ -131,7 +131,8 @@ Note: `SameMajorVersion` is used for the installed CMake package version file (s
 ### `.github/`
 
 - **`workflows/ci.yml`** — CI: preset-based build/test on Linux (GCC/Clang), macOS (AppleClang), Windows (MSVC);
-  extended build-and-test matrix (GCC 15, Clang 18/21, sanitizers, coverage); install test.
+  parallel Nix+Conan preset matrix on Linux/macOS; extended build-and-test matrix (GCC 15, Clang 18/21, sanitizers,
+  coverage); install test.
 - **`workflows/pre-commit-check.yml`** — Runs pre-commit on push to `main` and on pull requests.
 - **`workflows/pre-commit-update.yml`** — Weekly (and manual) pre-commit hook autoupdate.
 
@@ -139,6 +140,11 @@ Note: `SameMajorVersion` is used for the installed CMake package version file (s
 
 - **`mb.cpp-lib-template-config.cmake.in`** — Template for the CMake config-file package (used when installing the
   library so consumers can `find_package(mb.cpp-lib-template)`).
+
+### `conan/`
+
+- **`profiles/`** — Conan profiles used by the Nix+Conan preset CI matrix to chain Conan toolchain generation with
+  `devenv` compiler toolchain files.
 
 ### `scripts/`
 
@@ -171,6 +177,8 @@ Development and CI support (typically as a submodule): see
 - **`CMakeLists.txt`** — Top-level: project, options, library target (static by default, or header-only `INTERFACE`
   when `MB_CPP_LIB_TEMPLATE_HEADER_ONLY=ON`), install, tests, examples.
 - **`CMakePresets.json`** — Configure, build, test, and workflow presets for multiple compilers and configs.
+- **`conanfile.txt`** — Conan generator configuration for `CMakeDeps` + `CMakeToolchain` used by the Nix+Conan CI
+  preset matrix.
 - **`fetchcontent-lockfile.json`** — Pinned Git dependencies for the CMake dependency provider (e.g. Googletest); optional
   fields include `cmake_variables` per dependency. Format is documented in `devenv/README.md`. See **Build presets**
   above for the separate minimal lockfile under `devenv/` when building devenv alone.

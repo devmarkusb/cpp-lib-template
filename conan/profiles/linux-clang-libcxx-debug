@@ -1,0 +1,12 @@
+include(default)
+
+[settings]
+build_type=Debug
+compiler=clang
+compiler.version=21
+compiler.cppstd=26
+compiler.libcxx=libc++
+
+[conf]
+tools.cmake.cmaketoolchain:generator=Ninja
+tools.cmake.cmaketoolchain:user_toolchain=["devenv/cmake/toolchains/clang-libc++-toolchain.cmake"]

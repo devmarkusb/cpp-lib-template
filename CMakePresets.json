@@ -74,6 +74,11 @@
       }
     },
     {
+      "name": "nix-conan",
+      "hidden": true,
+      "toolchainFile": "${sourceDir}/build/conan/conan_toolchain.cmake"
+    },
+    {
       "name": "MaxWarnClang",
       "hidden": true,
       "description": "Duplicates mb_ul_set_target_warnings Clang compile options via global CMAKE_CXX_FLAGS so they apply project-wide; this can break builds that pull in third-party sources (e.g. FetchContent) that do not compile cleanly under -Werror and the rest. Does not pass -D_FORTIFY_SOURCE=3 here (glibc requires -O; Debug would fail with -Werror); mb_ul_set_target_warnings still sets it for Release-family configs. Adds -Wno-unused-command-line-argument so globally ignored -f flags on some platforms do not fail the build. Adds -Wno-poison-system-directories so -Werror does not fail when Clang rejects host include paths (e.g. /usr/local/include) during cross-compilation",
@@ -223,6 +228,113 @@
       ]
     },
     {
+      "name": "nix-conan-gcc-debug",
+      "displayName": "Nix+Conan GCC Debug Build",
+      "description": "Ninja + Conan toolchain + devenv GCC toolchain, Debug.",
+      "inherits": [
+        "nix-conan",
+        "debug",
+        "MaxWarnGcc",
+        "MaxSan",
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-gcc-release",
+      "displayName": "Nix+Conan GCC Release Build",
+      "description": "Ninja + Conan toolchain + devenv GCC toolchain, RelWithDebInfo.",
+      "inherits": [
+        "nix-conan",
+        "release",
+        "MaxWarnGcc",
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-clang-debug",
+      "displayName": "Nix+Conan Clang Debug Build",
+      "description": "Ninja + Conan toolchain + devenv Clang toolchain, Debug.",
+      "inherits": [
+        "nix-conan",
+        "debug",
+        "EveryWarnClang",
+        "MaxSan",
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-clang-release",
+      "displayName": "Nix+Conan Clang Release Build",
+      "description": "Ninja + Conan toolchain + devenv Clang toolchain, RelWithDebInfo.",
+      "inherits": [
+        "nix-conan",
+        "release",
+        "EveryWarnClang",
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-clang-libc++-debug",
+      "displayName": "Nix+Conan Clang-libc++ Debug Build",
+      "description": "Ninja + Conan toolchain + devenv Clang libc++ toolchain, Debug.",
+      "inherits": [
+        "nix-conan",
+        "debug",
+        "EveryWarnClang",
+        "MaxSan",
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-clang-libc++-release",
+      "displayName": "Nix+Conan Clang-libc++ Release Build",
+      "description": "Ninja + Conan toolchain + devenv Clang libc++ toolchain, RelWithDebInfo.",
+      "inherits": [
+        "nix-conan",
+        "release",
+        "EveryWarnClang",
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-appleclang-debug",
+      "displayName": "Nix+Conan Appleclang Debug Build",
+      "description": "Ninja + Conan toolchain + devenv Apple Clang toolchain, Debug.",
+      "inherits": [
+        "nix-conan",
+        "debug",
+        "EveryWarnClang",
+        "MaxSan",
+        "base"
+      ],
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD": "23"
+      }
+    },
+    {
+      "name": "nix-conan-appleclang-release",
+      "displayName": "Nix+Conan Appleclang Release Build",
+      "description": "Ninja + Conan toolchain + devenv Apple Clang toolchain, RelWithDebInfo.",
+      "inherits": [
+        "nix-conan",
+        "release",
+        "EveryWarnClang",
+        "base"
+      ],
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD": "23"
+      }
+    },
+    {
+      "name": "nix-conan-appleclang-maxsan-release",
+      "displayName": "Nix+Conan Appleclang MaxSan Release Build",
+      "description": "Ninja + Conan toolchain + devenv Apple Clang toolchain, MaxSan, RelWithDebInfo.",
+      "inherits": [
+        "MaxSan",
+        "nix-conan-appleclang-release"
+      ]
+    },
+    {
       "name": "msvc-debug",
       "displayName": "MSVC Debug Build",
       "description": "Ninja + MSVC, Debug.",
@@ -315,6 +427,69 @@
       ]
     },
     {
+      "name": "nix-conan-gcc-debug",
+      "configurePreset": "nix-conan-gcc-debug",
+      "inherits": [
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-gcc-release",
+      "configurePreset": "nix-conan-gcc-release",
+      "inherits": [
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-clang-debug",
+      "configurePreset": "nix-conan-clang-debug",
+      "inherits": [
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-clang-release",
+      "configurePreset": "nix-conan-clang-release",
+      "inherits": [
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-clang-libc++-debug",
+      "configurePreset": "nix-conan-clang-libc++-debug",
+      "inherits": [
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-clang-libc++-release",
+      "configurePreset": "nix-conan-clang-libc++-release",
+      "inherits": [
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-appleclang-debug",
+      "configurePreset": "nix-conan-appleclang-debug",
+      "inherits": [
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-appleclang-release",
+      "configurePreset": "nix-conan-appleclang-release",
+      "inherits": [
+        "base"
+      ]
+    },
+    {
+      "name": "nix-conan-appleclang-maxsan-release",
+      "configurePreset": "nix-conan-appleclang-maxsan-release",
+      "inherits": [
+        "base"
+      ]
+    },
+    {
       "name": "msvc-debug",
       "configurePreset": "msvc-debug",
       "inherits": [
@@ -386,6 +561,51 @@
       "name": "appleclang-maxsan-release",
       "inherits": "base",
       "configurePreset": "appleclang-maxsan-release"
+    },
+    {
+      "name": "nix-conan-gcc-debug",
+      "inherits": "base",
+      "configurePreset": "nix-conan-gcc-debug"
+    },
+    {
+      "name": "nix-conan-gcc-release",
+      "inherits": "base",
+      "configurePreset": "nix-conan-gcc-release"
+    },
+    {
+      "name": "nix-conan-clang-debug",
+      "inherits": "base",
+      "configurePreset": "nix-conan-clang-debug"
+    },
+    {
+      "name": "nix-conan-clang-release",
+      "inherits": "base",
+      "configurePreset": "nix-conan-clang-release"
+    },
+    {
+      "name": "nix-conan-clang-libc++-debug",
+      "inherits": "base",
+      "configurePreset": "nix-conan-clang-libc++-debug"
+    },
+    {
+      "name": "nix-conan-clang-libc++-release",
+      "inherits": "base",
+      "configurePreset": "nix-conan-clang-libc++-release"
+    },
+    {
+      "name": "nix-conan-appleclang-debug",
+      "inherits": "base",
+      "configurePreset": "nix-conan-appleclang-debug"
+    },
+    {
+      "name": "nix-conan-appleclang-release",
+      "inherits": "base",
+      "configurePreset": "nix-conan-appleclang-release"
+    },
+    {
+      "name": "nix-conan-appleclang-maxsan-release",
+      "inherits": "base",
+      "configurePreset": "nix-conan-appleclang-maxsan-release"
     },
     {
       "name": "msvc-debug",
@@ -567,6 +787,177 @@
         {
           "type": "test",
           "name": "appleclang-maxsan-release"
+        }
+      ]
+    },
+    {
+      "name": "nix-conan-gcc-debug",
+      "displayName": "Nix+Conan GCC Debug: configure, build, test",
+      "description": "Nix+Conan local/CI loop for GCC Debug.",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "nix-conan-gcc-debug"
+        },
+        {
+          "type": "build",
+          "name": "nix-conan-gcc-debug"
+        },
+        {
+          "type": "test",
+          "name": "nix-conan-gcc-debug"
+        }
+      ]
+    },
+    {
+      "name": "nix-conan-gcc-release",
+      "displayName": "Nix+Conan GCC Release: configure, build, test",
+      "description": "Nix+Conan local/CI loop for GCC RelWithDebInfo.",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "nix-conan-gcc-release"
+        },
+        {
+          "type": "build",
+          "name": "nix-conan-gcc-release"
+        },
+        {
+          "type": "test",
+          "name": "nix-conan-gcc-release"
+        }
+      ]
+    },
+    {
+      "name": "nix-conan-clang-debug",
+      "displayName": "Nix+Conan Clang Debug: configure, build, test",
+      "description": "Nix+Conan local/CI loop for Clang Debug.",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "nix-conan-clang-debug"
+        },
+        {
+          "type": "build",
+          "name": "nix-conan-clang-debug"
+        },
+        {
+          "type": "test",
+          "name": "nix-conan-clang-debug"
+        }
+      ]
+    },
+    {
+      "name": "nix-conan-clang-release",
+      "displayName": "Nix+Conan Clang Release: configure, build, test",
+      "description": "Nix+Conan local/CI loop for Clang RelWithDebInfo.",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "nix-conan-clang-release"
+        },
+        {
+          "type": "build",
+          "name": "nix-conan-clang-release"
+        },
+        {
+          "type": "test",
+          "name": "nix-conan-clang-release"
+        }
+      ]
+    },
+    {
+      "name": "nix-conan-clang-libc++-debug",
+      "displayName": "Nix+Conan Clang-libc++ Debug: configure, build, test",
+      "description": "Nix+Conan local/CI loop for Clang libc++ Debug.",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "nix-conan-clang-libc++-debug"
+        },
+        {
+          "type": "build",
+          "name": "nix-conan-clang-libc++-debug"
+        },
+        {
+          "type": "test",
+          "name": "nix-conan-clang-libc++-debug"
+        }
+      ]
+    },
+    {
+      "name": "nix-conan-clang-libc++-release",
+      "displayName": "Nix+Conan Clang-libc++ Release: configure, build, test",
+      "description": "Nix+Conan local/CI loop for Clang libc++ RelWithDebInfo.",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "nix-conan-clang-libc++-release"
+        },
+        {
+          "type": "build",
+          "name": "nix-conan-clang-libc++-release"
+        },
+        {
+          "type": "test",
+          "name": "nix-conan-clang-libc++-release"
+        }
+      ]
+    },
+    {
+      "name": "nix-conan-appleclang-debug",
+      "displayName": "Nix+Conan Apple Clang Debug: configure, build, test",
+      "description": "Nix+Conan local/CI loop for Apple Clang Debug.",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "nix-conan-appleclang-debug"
+        },
+        {
+          "type": "build",
+          "name": "nix-conan-appleclang-debug"
+        },
+        {
+          "type": "test",
+          "name": "nix-conan-appleclang-debug"
+        }
+      ]
+    },
+    {
+      "name": "nix-conan-appleclang-release",
+      "displayName": "Nix+Conan Apple Clang Release: configure, build, test",
+      "description": "Nix+Conan local/CI loop for Apple Clang RelWithDebInfo.",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "nix-conan-appleclang-release"
+        },
+        {
+          "type": "build",
+          "name": "nix-conan-appleclang-release"
+        },
+        {
+          "type": "test",
+          "name": "nix-conan-appleclang-release"
+        }
+      ]
+    },
+    {
+      "name": "nix-conan-appleclang-maxsan-release",
+      "displayName": "Nix+Conan Apple Clang MaxSan Release: configure, build, test",
+      "description": "Nix+Conan local/CI loop for Apple Clang MaxSan RelWithDebInfo.",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "nix-conan-appleclang-maxsan-release"
+        },
+        {
+          "type": "build",
+          "name": "nix-conan-appleclang-maxsan-release"
+        },
+        {
+          "type": "test",
+          "name": "nix-conan-appleclang-maxsan-release"
         }
       ]
     },
