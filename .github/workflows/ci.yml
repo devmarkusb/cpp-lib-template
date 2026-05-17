@@ -33,10 +33,10 @@ jobs:
         [
           {"preset": "nix-conan-gcc-debug", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan gcc15", "conan_profile": "conan/profiles/linux-gcc-debug"},
           {"preset": "nix-conan-gcc-release", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan gcc15", "conan_profile": "conan/profiles/linux-gcc-release"},
-          {"preset": "nix-conan-clang-debug", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan clang_21", "conan_profile": "conan/profiles/linux-clang-debug"},
-          {"preset": "nix-conan-clang-release", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan clang_21", "conan_profile": "conan/profiles/linux-clang-release"},
-          {"preset": "nix-conan-clang-libc++-debug", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan llvmPackages_21.clangWithLibcAndBasicRtAndLibcxx", "conan_profile": "conan/profiles/linux-clang-libcxx-debug"},
-          {"preset": "nix-conan-clang-libc++-release", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan llvmPackages_21.clangWithLibcAndBasicRtAndLibcxx", "conan_profile": "conan/profiles/linux-clang-libcxx-release"},
+          {"preset": "nix-conan-clang-debug", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan clang_21 llvmPackages_21.compiler-rt-libc", "conan_profile": "conan/profiles/linux-clang-debug"},
+          {"preset": "nix-conan-clang-release", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan clang_21 llvmPackages_21.compiler-rt-libc", "conan_profile": "conan/profiles/linux-clang-release"},
+          {"preset": "nix-conan-clang-libc++-debug", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan clang_21 llvmPackages_21.libcxx llvmPackages_21.compiler-rt-libc", "conan_profile": "conan/profiles/linux-clang-libcxx-debug"},
+          {"preset": "nix-conan-clang-libc++-release", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan clang_21 llvmPackages_21.libcxx llvmPackages_21.compiler-rt-libc", "conan_profile": "conan/profiles/linux-clang-libcxx-release"},
           {"preset": "nix-conan-appleclang-debug", "runner": "macos-latest", "nix_packages": "cmake ninja pkg-config conan", "conan_profile": "conan/profiles/macos-appleclang-debug"},
           {"preset": "nix-conan-appleclang-release", "runner": "macos-latest", "nix_packages": "cmake ninja pkg-config conan", "conan_profile": "conan/profiles/macos-appleclang-release"},
           {"preset": "nix-conan-appleclang-maxsan-release", "runner": "macos-latest", "nix_packages": "cmake ninja pkg-config conan", "conan_profile": "conan/profiles/macos-appleclang-release"}

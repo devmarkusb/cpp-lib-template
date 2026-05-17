@@ -24,7 +24,14 @@
           };
 
           clang21 = pkgs.mkShell {
-            packages = with pkgs; [ cmake ninja pkg-config conan clang_21 ];
+            packages = with pkgs; [
+              cmake
+              ninja
+              pkg-config
+              conan
+              clang_21
+              llvmPackages_21.compiler-rt-libc
+            ];
           };
 
           clang21-libcxx = pkgs.mkShell {
@@ -33,7 +40,9 @@
               ninja
               pkg-config
               conan
-              llvmPackages_21.clangWithLibcAndBasicRtAndLibcxx
+              clang_21
+              llvmPackages_21.libcxx
+              llvmPackages_21.compiler-rt-libc
             ];
           };
 
