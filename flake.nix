@@ -28,7 +28,13 @@
           };
 
           clang21-libcxx = pkgs.mkShell {
-            packages = with pkgs; [ cmake ninja pkg-config conan clang_21 libcxx ];
+            packages = with pkgs; [
+              cmake
+              ninja
+              pkg-config
+              conan
+              llvmPackages_21.clangWithLibcAndBasicRtAndLibcxx
+            ];
           };
 
           appleclang = pkgs.mkShell {
