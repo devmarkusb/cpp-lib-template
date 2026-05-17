@@ -96,7 +96,7 @@
         "compiler.cppstd": "26",
         "compiler.libcxx": "libstdc++11"
       },
-      "user_toolchain": "devenv/cmake/toolchains/gcc-toolchain.cmake"
+      "user_toolchain": "{{profile_dir}}/../../devenv/cmake/toolchains/gcc-toolchain.cmake"
     },
     "linux-gcc-release": {
       "include": "default",
@@ -107,7 +107,7 @@
         "compiler.cppstd": "26",
         "compiler.libcxx": "libstdc++11"
       },
-      "user_toolchain": "devenv/cmake/toolchains/gcc-toolchain.cmake"
+      "user_toolchain": "{{profile_dir}}/../../devenv/cmake/toolchains/gcc-toolchain.cmake"
     },
     "linux-clang-debug": {
       "include": "default",
@@ -118,7 +118,7 @@
         "compiler.cppstd": "26",
         "compiler.libcxx": "libstdc++11"
       },
-      "user_toolchain": "devenv/cmake/toolchains/clang-toolchain.cmake"
+      "user_toolchain": "{{profile_dir}}/../../devenv/cmake/toolchains/clang-toolchain.cmake"
     },
     "linux-clang-release": {
       "include": "default",
@@ -129,7 +129,7 @@
         "compiler.cppstd": "26",
         "compiler.libcxx": "libstdc++11"
       },
-      "user_toolchain": "devenv/cmake/toolchains/clang-toolchain.cmake"
+      "user_toolchain": "{{profile_dir}}/../../devenv/cmake/toolchains/clang-toolchain.cmake"
     },
     "linux-clang-libcxx-debug": {
       "include": "default",
@@ -140,7 +140,7 @@
         "compiler.cppstd": "26",
         "compiler.libcxx": "libc++"
       },
-      "user_toolchain": "devenv/cmake/toolchains/clang-libc++-toolchain.cmake"
+      "user_toolchain": "{{profile_dir}}/../../devenv/cmake/toolchains/clang-libc++-toolchain.cmake"
     },
     "linux-clang-libcxx-release": {
       "include": "default",
@@ -151,7 +151,7 @@
         "compiler.cppstd": "26",
         "compiler.libcxx": "libc++"
       },
-      "user_toolchain": "devenv/cmake/toolchains/clang-libc++-toolchain.cmake"
+      "user_toolchain": "{{profile_dir}}/../../devenv/cmake/toolchains/clang-libc++-toolchain.cmake"
     },
     "macos-appleclang-debug": {
       "include": "default",
@@ -160,7 +160,7 @@
         "compiler.cppstd": "23",
         "compiler.libcxx": "libc++"
       },
-      "user_toolchain": "devenv/cmake/toolchains/appleclang-toolchain.cmake"
+      "user_toolchain": "{{profile_dir}}/../../devenv/cmake/toolchains/appleclang-toolchain.cmake"
     },
     "macos-appleclang-release": {
       "include": "default",
@@ -169,7 +169,7 @@
         "compiler.cppstd": "23",
         "compiler.libcxx": "libc++"
       },
-      "user_toolchain": "devenv/cmake/toolchains/appleclang-toolchain.cmake"
+      "user_toolchain": "{{profile_dir}}/../../devenv/cmake/toolchains/appleclang-toolchain.cmake"
     }
   }
 }

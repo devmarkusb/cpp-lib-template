@@ -7,4 +7,4 @@ compiler.libcxx=libc++
 
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja
-tools.cmake.cmaketoolchain:user_toolchain=["devenv/cmake/toolchains/appleclang-toolchain.cmake"]
+tools.cmake.cmaketoolchain:user_toolchain=["{{profile_dir}}/../../devenv/cmake/toolchains/appleclang-toolchain.cmake"]
