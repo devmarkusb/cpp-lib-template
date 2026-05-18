@@ -40,8 +40,7 @@
               ninja
               pkg-config
               conan
-              clang_21
-              llvmPackages_21.libcxx
+              llvmPackages_21.libcxxClang
               llvmPackages_21.compiler-rt-libc
             ];
           };
