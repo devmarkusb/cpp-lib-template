@@ -9,4 +9,11 @@ compiler.libcxx=libc++
 
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja
+tools.build:compiler_executables={"c":"clang","cpp":"clang++"}
 tools.cmake.cmaketoolchain:user_toolchain=["{{profile_dir}}/../../devenv/cmake/toolchains/clang-libc++-toolchain.cmake"]
+
+[buildenv]
+CC=clang
+CXX=clang++
+CXXFLAGS=-stdlib=libc++
+LDFLAGS=-stdlib=libc++ -lc++abi

@@ -41,8 +41,15 @@
               pkg-config
               conan
               llvmPackages_21.libcxxClang
+              llvmPackages_21.libcxx
               llvmPackages_21.compiler-rt-libc
             ];
+            shellHook = ''
+              export CC="clang"
+              export CXX="clang++"
+              export CXXFLAGS="-stdlib=libc++"
+              export LDFLAGS="-stdlib=libc++ -lc++abi"
+            '';
           };
 
           appleclang = pkgs.mkShell {

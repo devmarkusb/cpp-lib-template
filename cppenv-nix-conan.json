@@ -71,8 +71,15 @@
         "pkg-config",
         "conan",
         "llvmPackages_21.libcxxClang",
+        "llvmPackages_21.libcxx",
         "llvmPackages_21.compiler-rt-libc"
-      ]
+      ],
+      "env": {
+        "CC": "clang",
+        "CXX": "clang++",
+        "CXXFLAGS": "-stdlib=libc++",
+        "LDFLAGS": "-stdlib=libc++ -lc++abi"
+      }
     },
     "appleclang": {
       "packages": [
