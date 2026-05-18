@@ -27,8 +27,9 @@ jobs:
         ]
 
   preset-test-nix-conan:
-    uses: devmarkusb/devenv/.github/workflows/preset-test-nix-conan.yml@main
+    uses: devmarkusb/devenv/.github/workflows/preset-test.yml@main
     with:
+      use_nix_conan: true
       matrix_config: >
         [
           {"preset": "nix-conan-gcc-debug", "runner": "ubuntu-latest", "nix_packages": "cmake ninja pkg-config conan gcc15", "conan_profile": "conan/profiles/linux-gcc-debug"},
