@@ -43,6 +43,7 @@ if(MB_CPP_LIB_TEMPLATE_BUILD_TESTS)
 endif()
 include(mb-devenv-defaults)
 include(mb-devenv-install-library-config)
+include("${PROJECT_SOURCE_DIR}/cmake/dependencies.cmake")
 
 # From fetched https://github.com/devmarkusb/pre-commit (see fetchcontent-lockfile.json).
 mb_pre_commit_setup_project()

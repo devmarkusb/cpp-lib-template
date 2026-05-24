@@ -138,8 +138,14 @@ Note: `SameMajorVersion` is used for the installed CMake package version file (s
 
 ### `cmake/`
 
+- **`dependencies.cmake`** — Project build-time dependency hook. Add external config-package dependencies here with
+  `find_package(... CONFIG REQUIRED)`, guarded by their imported target when possible. Dependencies that become part of
+  this library's public `PUBLIC`/`INTERFACE` link interface must also be mirrored in the installed config template with
+  `find_dependency(...)`.
 - **`mb.cpp-lib-template-config.cmake.in`** — Template for the CMake config-file package (used when installing the
-  library so consumers can `find_package(mb.cpp-lib-template)`).
+  library so consumers can `find_package(mb.cpp-lib-template)`). Add `find_dependency(...)` entries here only for
+  installed dependencies that ripple through the public interface; do not list test-only dependencies such as GoogleTest
+  or private build-only FetchContent/`add_subdirectory` details.
 
 ### `conan/`
 

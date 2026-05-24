@@ -2,6 +2,22 @@ set(MB_CPP_LIB_TEMPLATE_VERSION @PROJECT_VERSION@)
 
 @PACKAGE_INIT@
 
+# Public-interface dependencies must be resolved before the exported targets are
+# loaded. Add installed config-package dependencies here with find_dependency(),
+# guarded by the imported target when possible.
+#
+# Do not list private implementation details here: test dependencies such as
+# GTest, build-only FetchContent entries, and add_subdirectory-only targets do
+# not belong in the installed package config unless their targets appear in this
+# library's public interface.
+include(CMakeFindDependencyMacro)
+
+# Example:
+#
+# if(NOT TARGET vendor::library)
+#     find_dependency(vendor.library CONFIG REQUIRED)
+# endif()
+
 include(${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@-targets.cmake)
 
 set(@PROJECT_NAME@_FOUND TRUE)
