@@ -23,7 +23,7 @@ git submodule update --init --recursive
 To sync submodules (and optionally Git LFS) later, from the repo root:
 
 ```bash
-devenv/git-sub.sh
+devenv/scripts/git-sub.sh
 ```
 
 **Build** (CMake 3.30+, C++26 by default — **MSVC presets use C++23**, Ninja). From repo root:
@@ -39,13 +39,14 @@ Run tests:
 ctest --preset gcc-debug
 ```
 
-**Pre-commit** (optional, for local lint/format): create a venv and install hooks:
+**Pre-commit** (optional, for local lint/format): configure once, then run the sweep target:
 
 ```bash
-./devenv/bootstrap.sh
+cmake --preset gcc-debug
+cmake --build --preset gcc-debug --target mb-pre-commit-sweep
 ```
 
-Then `pre-commit` runs on commit; you can also run `pre-commit run -a` manually.
+Then `pre-commit` runs on commit; you can also run `pre-commit run -a` manually if `pre-commit` is on `PATH`.
 
 ## Usage when starting a new library
 

@@ -70,13 +70,13 @@ Manual (if `pre-commit` is on PATH): `pre-commit run -a`.
 **clang-format:** `.clang-format` (LLVM-based). **clang-tidy:** `.clang-tidy` at repo root; optional review via devenv:
 
 ```bash
-python3 devenv/clang-tidy-review.py changed
-python3 devenv/clang-tidy-review.py full --preset clang-debug
+python3 devenv/scripts/clang-tidy-review.py changed
+python3 devenv/scripts/clang-tidy-review.py full --preset clang-debug
 ```
 
 Requires a configured preset with `compile_commands.json`. Use `--install` on supported platforms if clang-tidy is missing.
 
-README mentions `./devenv/bootstrap.sh` for pre-commit setup; **that script is not present** in the current `devenv` submodule — use CMake configure + `mb-pre-commit-sweep` instead.
+README uses CMake configure + `mb-pre-commit-sweep` for pre-commit setup.
 
 ## Architecture and important directories
 
