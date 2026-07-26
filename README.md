@@ -100,7 +100,7 @@ Installed package version compatibility: `SameMajorVersion` (`mb_devenv_install_
 
 | Path | Role |
 | ------ | ------ |
-| `.github/workflows/` | `ci.yml` — Linux/macOS/Windows preset CI, Nix+Conan matrix, sanitizers, coverage, install test; `pre-commit-check.yml`; weekly `pre-commit-update.yml` |
+| `.github/workflows/` | `ci.yml` — Linux/macOS/Windows preset CI, Nix+Conan matrix, sanitizers, coverage, install test; `pre-commit-check.yml` |
 | `cmake/` | `dependencies.cmake` — `find_package` for build deps; mirror public deps in `mb.cpp-lib-template-config.cmake.in` with `find_dependency` (not test-only deps) |
 | `conan/profiles/` | Conan profiles for Nix+Conan CI |
 | `scripts/new-cpp-lib.py` | Template → new project ([above](#starting-a-new-library)) |
