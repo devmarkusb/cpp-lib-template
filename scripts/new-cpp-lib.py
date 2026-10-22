@@ -133,15 +133,11 @@ def should_skip_dir(path: Path) -> bool:
     parts = path.parts
     if ".git" in parts:
         return True
-    if "build" in parts and parts[0] == "build":
-        return True
-    return False
+    return bool("build" in parts and parts[0] == "build")
 
 
 def is_probably_text(data: bytes) -> bool:
-    if b"\x00" in data[:4096]:
-        return False
-    return True
+    return b"\x00" not in data[:4096]
 
 
 def patch_readme_badge_line(readme: Path, owner_repo: str) -> None:
@@ -395,9 +391,10 @@ Upstream repository: [devmarkusb/cpp-lib-template](https://github.com/devmarkusb
         ),
     ]
 
-    if args.github:
-        if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", args.github):
-            die("--github must look like OWNER/REPO")
+    if args.github and not re.fullmatch(
+        r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", args.github
+    ):
+        die("--github must look like OWNER/REPO")
 
     replace_in_files(root, replacements)
 
