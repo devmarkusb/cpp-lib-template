@@ -136,4 +136,4 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    uses: devmarkusb/devenv/.github/workflows/dependabot-automerge.yml@807befc3c0fac1a78bcdba017fc579459921f548
+    uses: devmarkusb/devenv/.github/workflows/dependabot-automerge.yml@ec14ee82ac0a9329cd0340c1bf82f57c232cba21
